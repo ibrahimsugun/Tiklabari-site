@@ -1,0 +1,8 @@
+# Tıklabari Robots.txt
+User-agent: *
+Allow: /
+
+# Sitemap lokasyonu
+Sitemap: https://tiklabari.com/sitemap.xml
+
+
