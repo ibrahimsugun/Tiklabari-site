@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Yavaş siteler trafik kaybeder. Site hızını artırmanın yolları, mobil uyumluluk ve Tıklabari ile teknik SEO ipuçları.">
+    <title>Site Hızı ve Kullanıcı Deneyiminin Trafiğe Etkisi - SEO</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary-hue: 260;
+            --primary-color: hsl(var(--primary-hue), 82%, 58%);
+            --primary-dark: hsl(var(--primary-hue), 82%, 48%);
+            --secondary-hue: 320;
+            --secondary-color: hsl(var(--secondary-hue), 85%, 60%);
+            --bg-color: hsl(240, 20%, 98%);
+            --bg-secondary: hsl(240, 15%, 95%);
+            --text-color: hsl(240, 15%, 15%);
+            --text-muted: hsl(240, 10%, 45%);
+            --border-color: hsl(240, 15%, 88%);
+            --card-bg: hsl(0, 0%, 100%);
+            --card-shadow: 0 8px 32px hsla(240, 30%, 20%, 0.08);
+            --card-shadow-hover: 0 16px 48px hsla(240, 30%, 20%, 0.16);
+            --font-primary: 'Outfit', sans-serif;
+            --font-secondary: 'Inter', sans-serif;
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+            --spacing-2xl: 4rem;
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        [data-theme="dark"] {
+            --bg-color: hsl(240, 18%, 8%);
+            --bg-secondary: hsl(240, 15%, 12%);
+            --text-color: hsl(240, 15%, 95%);
+            --text-muted: hsl(240, 10%, 65%);
+            --border-color: hsl(240, 15%, 20%);
+            --card-bg: hsl(240, 15%, 14%);
+            --card-shadow: 0 8px 32px hsla(0, 0%, 0%, 0.3);
+            --card-shadow-hover: 0 16px 48px hsla(0, 0%, 0%, 0.5);
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+            scroll-padding-top: 80px;
+        }
+
+        body {
+            font-family: var(--font-secondary);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.8;
+            overflow-x: hidden;
+            transition: background-color var(--transition-base), color var(--transition-base);
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: var(--font-primary);
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-color);
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            margin-bottom: var(--spacing-md);
+        }
+
+        h2 {
+            font-size: 1.75rem;
+            margin-top: var(--spacing-xl);
+            margin-bottom: var(--spacing-md);
+        }
+
+        p {
+            margin-bottom: var(--spacing-md);
+            color: var(--text-muted);
+        }
+
+        strong {
+            color: var(--primary-color);
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: var(--spacing-md) var(--spacing-lg);
+            background: hsla(0, 0%, 100%, 0.8);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-primary);
+            font-size: 1.75rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: var(--spacing-md);
+        }
+
+        .nav-menu a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .theme-toggle {
+            position: relative;
+            width: 60px;
+            height: 32px;
+            background: var(--border-color);
+            border-radius: 100px;
+            cursor: pointer;
+            border: none;
+            outline: none;
+        }
+
+        .theme-toggle::before {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 26px;
+            height: 26px;
+            background: var(--card-bg);
+            border-radius: 50%;
+            transition: transform var(--transition-base);
+        }
+
+        [data-theme="dark"] .theme-toggle {
+            background: var(--primary-color);
+        }
+
+        [data-theme="dark"] .theme-toggle::before {
+            transform: translateX(28px);
+        }
+
+        .article-container {
+            max-width: 800px;
+            margin: 120px auto var(--spacing-2xl);
+            padding: 0 var(--spacing-lg);
+        }
+
+        .article-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: var(--radius-lg);
+            margin: var(--spacing-lg) 0;
+            box-shadow: var(--card-shadow);
+        }
+
+        .breadcrumb {
+            margin-bottom: var(--spacing-md);
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .breadcrumb a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: var(--spacing-xl) var(--spacing-lg);
+            margin-top: var(--spacing-2xl);
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: var(--font-primary);
+            font-size: 1.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">Tıklabari</a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Ana Sayfa</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="about.html">Hakkımızda</a></li>
+                    <li><a href="contact.html">İletişim</a></li>
+                </ul>
+            </nav>
+            <button class="theme-toggle" id="themeToggle"></button>
+        </div>
+    </header>
+    <main class="article-container">
+        <nav class="breadcrumb"><a href="index.html">Ana Sayfa</a> / <a href="blog.html">Blog</a> / <span>Site Hızı ve
+                Deneyimi</span></nav>
+        <h1>Site Hızı ve Kullanıcı Deneyiminin Trafiğe Etkisi</h1>
+        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1200&q=80" alt="Site Hızı"
+            class="article-image">
+        <div class="article-content">
+            <p>İnternet kullanıcılarının sabrı yoktur. Araştırmalara göre, açılması 3 saniyeden uzun süren sitelerin
+                ziyaretçilerinin %53'ü sayfayı terk ediyor. Tıklabari ile sitenize hit çekseniz bile, <strong>site
+                    hızı</strong> düşükse bu hiti tutamazsınız.</p>
+            <h2>Mobil Uyumluluğun Önemi</h2>
+            <p>Günümüzde trafiğin %70'inden fazlası mobil cihazlardan geliyor. Siteniz masaüstünde harika görünebilir
+                ama telefonda butonlar birbirine giriyorsa, kullanıcıyı kaybedersiniz. <strong>Responsive (duyarlı)
+                    tasarım</strong> artık bir seçenek değil, zorunluluktur. <strong>Kullanıcı Deneyimi</strong> mobil
+                platformlarda başlar.</p>
+            <h2>Hızlı Açılan Sayfalar Neden Daha Çok Tıklanır?</h2>
+            <p>Hız, güven işaretidir. Hızlı bir site profesyonel görünür. Ayrıca Google, hızlı siteleri arama
+                sonuçlarında daha üstte gösterir <strong>(Core Web Vitals)</strong>. Görsellerinizi sıkıştırın, gereksiz
+                kodları temizleyin.</p>
+            <h2>Teknik SEO ve Tıklabari Uyumu</h2>
+            <p>Sitenizin altyapısı sağlamsa, Tıklabari'den gelen yoğun trafiği kaldırabilir. Sunucu kapasitenizin ve
+                bant genişliğinizin artan trafiği karşılayabilecek düzeyde olduğundan emin olun.</p>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="footer-container"><span class="footer-logo">Tıklabari</span>
+            <p>&copy; 2026 Tıklabari. Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
+    <script>const themeToggle = document.getElementById('themeToggle'), html = document.documentElement, currentTheme = localStorage.getItem('theme') || 'light'; html.setAttribute('data-theme', currentTheme); themeToggle.addEventListener('click', () => { const newTheme = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light'; html.setAttribute('data-theme', newTheme); localStorage.setItem('theme', newTheme); });</script>
+</body>
+
+</html>

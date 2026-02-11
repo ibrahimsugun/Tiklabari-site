@@ -37,6 +37,20 @@
     <url><loc>https://tiklabari.com/seyahat.html</loc><priority>0.9</priority></url>
     <url><loc>https://tiklabari.com/oyun.html</loc><priority>0.9</priority></url>
 
+    <!-- Blog & Rehberler -->
+    <url><loc>https://tiklabari.com/blog.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+    <url><loc>https://tiklabari.com/bonus-rehberi.html</loc><priority>0.8</priority></url>
+    <url><loc>https://tiklabari.com/web-sitesi-trafigi.html</loc><priority>0.8</priority></url>
+    <url><loc>https://tiklabari.com/marka-bilinirligi.html</loc><priority>0.8</priority></url>
+    <url><loc>https://tiklabari.com/backlink-stratejileri.html</loc><priority>0.8</priority></url>
+    <url><loc>https://tiklabari.com/global-siralama-taktikleri.html</loc><priority>0.8</priority></url>
+    <url><loc>https://tiklabari.com/tiklama-psikolojisi.html</loc><priority>0.8</priority></url>
+    <url><loc>https://tiklabari.com/affiliate-pazarlama.html</loc><priority>0.8</priority></url>
+    <url><loc>https://tiklabari.com/viral-icerik.html</loc><priority>0.8</priority></url>
+    <url><loc>https://tiklabari.com/site-hizi-deneyimi.html</loc><priority>0.8</priority></url>
+    <url><loc>https://tiklabari.com/yuksek-rekabetli-sektorler.html</loc><priority>0.8</priority></url>
+    <url><loc>https://tiklabari.com/monetization-para-kazanma.html</loc><priority>0.8</priority></url>
+
     <!-- Yasal Sayfalar -->
     <url><loc>https://tiklabari.com/privacy.html</loc><priority>0.3</priority></url>
     <url><loc>https://tiklabari.com/terms.html</loc><priority>0.3</priority></url>

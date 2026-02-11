@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Kullanıcılar neden tıklar? Renkler, başlıklar ve harekete geçirici mesajların (CTA) tıklama oranlarına etkisi.">
+    <title>Dijital Pazarlamada Tıklama Psikolojisi ve CTA Kullanımı - Tıklabari</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary-hue: 260;
+            --primary-color: hsl(var(--primary-hue), 82%, 58%);
+            --primary-dark: hsl(var(--primary-hue), 82%, 48%);
+            --secondary-hue: 320;
+            --secondary-color: hsl(var(--secondary-hue), 85%, 60%);
+            --bg-color: hsl(240, 20%, 98%);
+            --bg-secondary: hsl(240, 15%, 95%);
+            --text-color: hsl(240, 15%, 15%);
+            --text-muted: hsl(240, 10%, 45%);
+            --border-color: hsl(240, 15%, 88%);
+            --card-bg: hsl(0, 0%, 100%);
+            --card-shadow: 0 8px 32px hsla(240, 30%, 20%, 0.08);
+            --card-shadow-hover: 0 16px 48px hsla(240, 30%, 20%, 0.16);
+            --font-primary: 'Outfit', sans-serif;
+            --font-secondary: 'Inter', sans-serif;
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+            --spacing-2xl: 4rem;
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        [data-theme="dark"] {
+            --bg-color: hsl(240, 18%, 8%);
+            --bg-secondary: hsl(240, 15%, 12%);
+            --text-color: hsl(240, 15%, 95%);
+            --text-muted: hsl(240, 10%, 65%);
+            --border-color: hsl(240, 15%, 20%);
+            --card-bg: hsl(240, 15%, 14%);
+            --card-shadow: 0 8px 32px hsla(0, 0%, 0%, 0.3);
+            --card-shadow-hover: 0 16px 48px hsla(0, 0%, 0%, 0.5);
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+            scroll-padding-top: 80px;
+        }
+
+        body {
+            font-family: var(--font-secondary);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.8;
+            overflow-x: hidden;
+            transition: background-color var(--transition-base), color var(--transition-base);
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: var(--font-primary);
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-color);
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            margin-bottom: var(--spacing-md);
+        }
+
+        h2 {
+            font-size: 1.75rem;
+            margin-top: var(--spacing-xl);
+            margin-bottom: var(--spacing-md);
+        }
+
+        p {
+            margin-bottom: var(--spacing-md);
+            color: var(--text-muted);
+        }
+
+        strong {
+            color: var(--primary-color);
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: var(--spacing-md) var(--spacing-lg);
+            background: hsla(0, 0%, 100%, 0.8);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-primary);
+            font-size: 1.75rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: var(--spacing-md);
+        }
+
+        .nav-menu a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .theme-toggle {
+            position: relative;
+            width: 60px;
+            height: 32px;
+            background: var(--border-color);
+            border-radius: 100px;
+            cursor: pointer;
+            border: none;
+            outline: none;
+        }
+
+        .theme-toggle::before {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 26px;
+            height: 26px;
+            background: var(--card-bg);
+            border-radius: 50%;
+            transition: transform var(--transition-base);
+        }
+
+        [data-theme="dark"] .theme-toggle {
+            background: var(--primary-color);
+        }
+
+        [data-theme="dark"] .theme-toggle::before {
+            transform: translateX(28px);
+        }
+
+        .article-container {
+            max-width: 800px;
+            margin: 120px auto var(--spacing-2xl);
+            padding: 0 var(--spacing-lg);
+        }
+
+        .article-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: var(--radius-lg);
+            margin: var(--spacing-lg) 0;
+            box-shadow: var(--card-shadow);
+        }
+
+        .breadcrumb {
+            margin-bottom: var(--spacing-md);
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .breadcrumb a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: var(--spacing-xl) var(--spacing-lg);
+            margin-top: var(--spacing-2xl);
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: var(--font-primary);
+            font-size: 1.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">Tıklabari</a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Ana Sayfa</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="about.html">Hakkımızda</a></li>
+                    <li><a href="contact.html">İletişim</a></li>
+                </ul>
+            </nav>
+            <button class="theme-toggle" id="themeToggle"></button>
+        </div>
+    </header>
+    <main class="article-container">
+        <nav class="breadcrumb"><a href="index.html">Ana Sayfa</a> / <a href="blog.html">Blog</a> / <span>Tıklama
+                Psikolojisi</span></nav>
+        <h1>Dijital Pazarlamada "Tıklama" Psikolojisi</h1>
+        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=1200&q=80" alt="Tıklama Psikolojisi"
+            class="article-image">
+        <div class="article-content">
+            <p>İnternette her gün milyarlarca link görüyoruz ama sadece çok azına tıklıyoruz. Neden? Tıklama eylemi,
+                saniyenin onda biri kadar kısa bir sürede verilen psikolojik bir karardır. Tıklabari olarak, bu kararı
+                etkileyen faktörleri sizin için analiz ettik.</p>
+            <h2>Harekete Geçirici Mesaj (CTA) Kullanımı</h2>
+            <p>"Buraya Tıkla" demek artık yeterli değil. "Hemen Kazan", "Fırsatı Gör", "Ücretsiz Dene" gibi fayda odaklı
+                emir kipleri, beynin <strong>ödül merkezini</strong> uyarır. Butonlarınızda eylem ve ödülü birleştirin.
+                Doğru <strong>Harekete Geçirici Mesaj (CTA)</strong> kullanımı dönüşüm oranlarını dramatik ölçüde
+                artırır.</p>
+            <h2>Renklerin ve Konumlandırmanın Önemi</h2>
+            <p>Kırmızı aciliyet, mavi güven, turuncu ise harekete geçme hissi verir. Tıklanmasını istediğiniz alanları
+                <strong>zıt renklerle (kontrast)</strong> öne çıkarın. Ayrıca, <strong>"F" tipi okuma modeline</strong>
+                göre, önemli linkleri sayfanın sol üst veya orta kısımlarına yerleştirmek tıklama oranını artırır.</p>
+            <h2>"Tıkla Bari" Dedirtecek Başlıklar Nasıl Atılır?</h2>
+            <p>Merak uyandıran, soru soran veya eksik bilgi veren (clickbait olmayan ama merak ettiren) başlıklar her
+                zaman kazanır. "Bu Bonusu Kaçırmayın" yerine "Bakiyenizi İkiye Katlayacak O Yöntem" demek, merak
+                duygusunu tetikler.</p>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="footer-container"><span class="footer-logo">Tıklabari</span>
+            <p>&copy; 2026 Tıklabari. Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
+    <script>const themeToggle = document.getElementById('themeToggle'), html = document.documentElement, currentTheme = localStorage.getItem('theme') || 'light'; html.setAttribute('data-theme', currentTheme); themeToggle.addEventListener('click', () => { const newTheme = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light'; html.setAttribute('data-theme', newTheme); localStorage.setItem('theme', newTheme); });</script>
+</body>
+
+</html>
