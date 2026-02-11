@@ -5,8 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="En popüler e-ticaret platformları ve online alışveriş siteleri. Güvenilir platformlardan alışveriş yapın.">
-    <title>E-Ticaret Platformları | Tıklabari</title>
+        content="Tıklabari Kullanım Koşulları - Web sitemizi kullanırken uymanız gereken kurallar ve şartlar.">
+    <title>Kullanım Koşulları | Tıklabari</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
@@ -258,83 +260,58 @@
         }
 
         .page-content {
-            max-width: 1200px;
+            max-width: 800px;
             margin: 0 auto;
             padding: var(--spacing-2xl) var(--spacing-lg)
         }
 
-        .platform-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: var(--spacing-lg);
-            margin-top: var(--spacing-xl)
-        }
-
-        .platform-card {
-            background: var(--card-bg);
-            border-radius: var(--radius-lg);
-            padding: var(--spacing-lg);
-            box-shadow: var(--card-shadow);
-            border: 1px solid var(--border-color);
-            transition: all var(--transition-base);
-            position: relative;
-            overflow: hidden
-        }
-
-        .platform-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--card-shadow-hover)
-        }
-
-        .platform-icon {
-            font-size: 3rem;
-            margin-bottom: var(--spacing-sm)
-        }
-
-        .platform-card h3 {
-            color: var(--text-color);
-            margin-bottom: var(--spacing-sm)
-        }
-
-        .platform-card p {
+        .page-content h2 {
+            margin-top: var(--spacing-2xl);
+            padding-top: var(--spacing-lg);
+            border-top: 1px solid var(--border-color);
             margin-bottom: var(--spacing-md);
-            line-height: 1.7
+            color: var(--text-color)
         }
 
-        .platform-features {
-            list-style: none;
-            margin-bottom: var(--spacing-md)
+        .page-content h2:first-of-type {
+            margin-top: 0;
+            padding-top: 0;
+            border-top: none
         }
 
-        .platform-features li {
-            padding: var(--spacing-xs) 0;
-            color: var(--text-muted);
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-xs)
+        .page-content h3 {
+            margin-top: var(--spacing-lg);
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-color)
         }
 
-        .platform-features li::before {
-            content: '✓';
-            color: var(--primary-color);
-            font-weight: 700
+        .page-content p {
+            margin-bottom: var(--spacing-md);
+            line-height: 1.8
         }
 
-        .platform-link {
-            display: inline-flex;
-            padding: 0.75rem 1.5rem;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            text-decoration: none;
+        .page-content ul,
+        .page-content ol {
+            margin-bottom: var(--spacing-md);
+            padding-left: var(--spacing-lg)
+        }
+
+        .page-content li {
+            margin-bottom: var(--spacing-xs);
+            line-height: 1.8
+        }
+
+        .page-content strong {
+            color: var(--text-color)
+        }
+
+        .legal-last-updated {
+            background: var(--bg-secondary);
+            padding: var(--spacing-md);
             border-radius: var(--radius-md);
-            font-weight: 600;
-            transition: all var(--transition-base);
-            box-shadow: 0 4px 16px hsla(var(--primary-hue), 80%, 50%, 0.3)
-        }
-
-        .platform-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px hsla(var(--primary-hue), 80%, 50%, 0.4)
+            margin-bottom: var(--spacing-xl);
+            font-style: italic;
+            color: var(--text-muted)
         }
 
         .footer {
@@ -491,10 +468,6 @@
                 padding: var(--spacing-xl) var(--spacing-md)
             }
 
-            .platform-grid {
-                grid-template-columns: 1fr
-            }
-
             .footer-content {
                 grid-template-columns: 1fr;
                 text-align: center
@@ -510,10 +483,10 @@
 <body>
     <header class="header">
         <div class="header-container">
-            <a href="index.html" class="logo">Tıklabari</a>
+            <a href="../index.html" class="logo">Tıklabari</a>
             <nav>
                 <ul class="nav-menu" id="navMenu">
-                    <li><a href="index.html">Ana Sayfa</a></li>
+                    <li><a href="../index.html">Ana Sayfa</a></li>
                     <li><a href="about.html">Hakkımızda</a></li>
                     <li><a href="contact.html">İletişim</a></li>
                     <li><a href="careers.html">Kariyer</a></li>
@@ -527,90 +500,122 @@
     </header>
 
     <section class="page-header">
-        <h1>🛒 E-Ticaret Platformları</h1>
-        <p>Güvenilir online alışveriş platformları ve marketplace'ler</p>
+        <h1>Kullanım Koşulları</h1>
+        <p>Tıklabari platformunu kullanırken uymanız gereken kurallar</p>
     </section>
 
     <main class="page-content">
-        <div class="platform-grid">
-            <div class="platform-card">
-                <div class="platform-icon">🛍️</div>
-                <h3>Trendyol</h3>
-                <p>Türkiye'nin en büyük e-ticaret platformu. Giyimden elektroniğe milyonlarca ürün.</p>
-                <ul class="platform-features">
-                    <li>Hızlı kargo seçenekleri</li>
-                    <li>Güvenli ödeme sistemi</li>
-                    <li>Kolay iade işlemleri</li>
-                    <li>Trendyol Premium üyelik</li>
-                </ul>
-                <a href="https://www.trendyol.com" target="_blank" class="platform-link">Ziyaret Et →</a>
-            </div>
+        <div class="legal-last-updated">Son Güncellenme: 11 Şubat 2026</div>
 
-            <div class="platform-card">
-                <div class="platform-icon">📦</div>
-                <h3>Amazon</h3>
-                <p>Dünyanın en büyük online alışveriş sitesi. Her kategoriden milyonlarca ürün.</p>
-                <ul class="platform-features">
-                    <li>Prime üyelik avantajları</li>
-                    <li>Uluslararası kargo</li>
-                    <li>Müşteri yorumları</li>
-                    <li>Lightning deals</li>
-                </ul>
-                <a href="https://www.amazon.com.tr" target="_blank" class="platform-link">Ziyaret Et →</a>
-            </div>
+        <article>
+            <p>Bu Kullanım Koşulları, Tıklabari web sitesini (bundan sonra "Platform" olarak anılacaktır) kullanımınızı
+                düzenler. Platformu kullanarak bu koşulları kabul etmiş sayılırsınız.</p>
 
-            <div class="platform-card">
-                <div class="platform-icon">🏪</div>
-                <h3>Hepsiburada</h3>
-                <p>Türkiye'nin öncü e-ticaret sitesi. Teknolojiden mobilyaya geniş ürün yelpazesi.</p>
-                <ul class="platform-features">
-                    <li>HepsiExpress hızlı teslimat</li>
-                    <li>Puan kazanma sistemi</li>
-                    <li>Kampanyalı ürünler</li>
-                    <li>7/24 müşteri hizmetleri</li>
-                </ul>
-                <a href="https://www.hepsiburada.com" target="_blank" class="platform-link">Ziyaret Et →</a>
-            </div>
+            <h2>1. Genel Hükümler</h2>
+            <p>Tıklabari, kullanıcılara çeşitli dijital platformlara, araçlara ve fırsatlara erişim sağlayan bir hub
+                hizmetidir. Platform üzerinde sunulan tüm içerik, linkler ve bilgiler bilgilendirme amaçlıdır.</p>
+            <ul>
+                <li>Platform'u yalnızca yasal amaçlar için kullanabilirsiniz</li>
+                <li>18 yaşından küçükseniz, Platform'u ebeveyn veya vasinizin izni ile kullanabilirsiniz</li>
+                <li>Hesap oluşturmanız durumunda doğru ve güncel bilgiler vermelisiniz</li>
+            </ul>
 
-            <div class="platform-card">
-                <div class="platform-icon">🎁</div>
-                <h3>N11</h3>
-                <p>Binlerce mağaza ve milyonlarca ürün seçeneğiyle online alışveriş platformu.</p>
-                <ul class="platform-features">
-                    <li>Çoklu satıcı sistemi</li>
-                    <li>Hediye çeki imkanı</li>
-                    <li>İndirim kuponları</li>
-                    <li>Fırsat ürünleri</li>
-                </ul>
-                <a href="https://www.n11.com" target="_blank" class="platform-link">Ziyaret Et →</a>
-            </div>
+            <h2>2. Fikri Mülkiyet Hakları</h2>
+            <p>Platform üzerindeki tüm içerik, tasarım, logolar, metneler ve diğer materyaller Tıklabari'nin veya lisans
+                verenlerin mülkiyetindedir ve telif hakları ile korunmaktadır.</p>
+            <ul>
+                <li>Platform içeriğini izinsiz kopyalayamaz, dağıtamaz veya değiştiremezsiniz</li>
+                <li>Tıklabari logosunu ve markasını izinsiz kullanamazsınız</li>
+                <li>İçeriği ticari amaçlarla kullanamazsınız</li>
+            </ul>
 
-            <div class="platform-card">
-                <div class="platform-icon">💻</div>
-                <h3>Gittigidiyor</h3>
-                <p>eBay'in Türkiye markası. İkinci el ve yeni ürünler için güvenilir platform.</p>
-                <ul class="platform-features">
-                    <li>Açık artırma sistemi</li>
-                    <li>Alıcı koruma programı</li>
-                    <li>Ücretsiz ilan verme</li>
-                    <li>Geniş ödeme seçenekleri</li>
-                </ul>
-                <a href="https://www.gittigidiyor.com" target="_blank" class="platform-link">Ziyaret Et →</a>
-            </div>
+            <h2>3. Kullanıcı Sorumlulukları</h2>
+            <p>Platform kullanıcısı olarak aşağıdaki kurallara uymayı kabul edersiniz:</p>
+            <ul>
+                <li><strong>Yasadışı Faaliyetler:</strong> Platform'u yasa dışı amaçlarla kullanmayacaksınız</li>
+                <li><strong>Güvenlik:</strong> Platform güvenliğini tehlikeye atacak davranışlarda bulunmayacaksınız
+                </li>
+                <li><strong>Spam:</strong> Spam, zararlı yazılım veya virüs göndermeyeceksiniz</li>
+                <li><strong>Diğer Kullanıcılar:</strong> Diğer kullanıcıların haklarına saygı göstereceksiniz</li>
+                <li><strong>Bilgilerin Doğruluğu:</strong> Sağladığınız bilgilerin doğru ve güncel olmasını
+                    sağlayacaksınız</li>
+            </ul>
 
-            <div class="platform-card">
-                <div class="platform-icon">🌐</div>
-                <h3>AliExpress</h3>
-                <p>Çin'den direkt alışveriş. Uygun fiyatlı binlerce ürün çeşidi.</p>
-                <ul class="platform-features">
-                    <li>Düşük fiyatlı ürünler</li>
-                    <li>Alıcı koruması</li>
-                    <li>Ücretsiz kargo seçenekleri</li>
-                    <li>Flash indirimler</li>
-                </ul>
-                <a href="https://www.aliexpress.com" target="_blank" class="platform-link">Ziyaret Et →</a>
-            </div>
-        </div>
+            <h2>4. Üçüncü Taraf Bağlantılar</h2>
+            <p>Platform, üçüncü taraf web sitelerine bağlantılar içerebilir. Bu bağlantılar yalnızca kolaylık sağlamak
+                amacıyla sunulmaktadır:</p>
+            <ul>
+                <li>Üçüncü taraf sitelerin içeriğinden sorumlu değiliz</li>
+                <li>Bu sitelerin gizlilik uygulamaları veya kullanım koşulları için sorumluluk kabul etmiyoruz</li>
+                <li>Bağlantılara tıkladığınızda kendi sorumluluğunuzdadır</li>
+            </ul>
+
+            <h2>5. Hizmet Kesintileri ve Değişiklikler</h2>
+            <p>Tıklabari, Platform hizmetlerini önceden bildirimde bulunmaksızın değiştirme, askıya alma veya
+                sonlandırma hakkını saklı tutar:</p>
+            <ul>
+                <li>Bakım ve güncellemeler için hizmet kesintileri olabilir</li>
+                <li>Platform özelliklerini istediğimiz zaman değiştirebiliriz</li>
+                <li>Kullanıcı deneyimini iyileştirmek için sürekli geliştirmeler yapabiliriz</li>
+            </ul>
+
+            <h2>6. Sorumluluk Reddi</h2>
+            <p>Platform "olduğu gibi" sunulmaktadır. Tıklabari aşağıdaki konularda garanti vermez:</p>
+            <ul>
+                <li>Platform'un kesintisiz veya hatasız çalışacağı</li>
+                <li>Platform üzerindeki bilgilerin doğruluğu, güvenilirliği veya tamlığı</li>
+                <li>Platform kullanımından doğacak sonuçlar</li>
+                <li>Üçüncü taraf bağlantılar aracılığıyla erişilen içerik</li>
+            </ul>
+
+            <h2>7. Sorumluluk Sınırlaması</h2>
+            <p>Tıklabari, aşağıdaki durumlardan kaynaklanan zararlardan sorumlu tutulamaz:</p>
+            <ul>
+                <li>Platform kullanımı veya kullanılamaması</li>
+                <li>Platform üzerinden erişilen üçüncü taraf hizmetler</li>
+                <li>Veri kaybı veya sistem arızaları</li>
+                <li>Yetkisiz erişim veya güvenlik ihlalleri</li>
+            </ul>
+
+            <h2>8. Hesap Askıya Alma ve Fesih</h2>
+            <p>Tıklabari, aşağıdaki durumlarda kullanıcı hesaplarını askıya alma veya feshetme hakkını saklı tutar:</p>
+            <ul>
+                <li>Kullanım koşullarını ihlal etmeniz</li>
+                <li>Yasadışı faaliyetlerde bulunmanız</li>
+                <li>Platform güvenliğini tehlikeye atmanız</li>
+                <li>Diğer kullanıcıların haklarını ihlal etmeniz</li>
+            </ul>
+
+            <h2>9. Veri Koruma ve Gizlilik</h2>
+            <p>Kişisel verilerinizin korunması bizim için önemlidir. Verilerinizin nasıl toplandığı, kullanıldığı ve
+                korunduğu hakkında detaylı bilgi için <a href="privacy.html"
+                    style="color:var(--primary-color);text-decoration:none;font-weight:600">Gizlilik Politikamızı</a>
+                inceleyiniz.</p>
+
+            <h2>10. Değişiklikler</h2>
+            <p>Bu Kullanım Koşullarını zaman zaman güncelleyebiliriz. Önemli değişiklikler olması durumunda, Platform
+                üzerinden veya e-posta yoluyla bilgilendirileceksiniz. Değişikliklerden sonra Platform'u kullanmaya
+                devam etmeniz, yeni koşulları kabul ettiğiniz anlamına gelir.</p>
+
+            <h2>11. Uygulanacak Hukuk</h2>
+            <p>Bu Kullanım Koşulları, Türkiye Cumhuriyeti yasalarına tabidir. Bu koşullardan kaynaklanan uyuşmazlıklar,
+                İstanbul mahkemelerinde çözümlenecektir.</p>
+
+            <h2>12. İletişim</h2>
+            <p>Kullanım Koşulları hakkında sorularınız varsa, lütfen bizimle iletişime geçin:</p>
+            <ul>
+                <li><strong>E-posta:</strong> <a href="mailto:legal@tiklabari.com"
+                        style="color:var(--primary-color);text-decoration:none">legal@tiklabari.com</a></li>
+                <li><strong>İletişim Formu:</strong> <a href="contact.html"
+                        style="color:var(--primary-color);text-decoration:none;font-weight:600">İletişim Sayfamız</a>
+                </li>
+            </ul>
+
+            <p
+                style="margin-top:var(--spacing-xl);padding:var(--spacing-md);background:var(--bg-secondary);border-radius:var(--radius-md);">
+                <strong style="color:var(--text-color);">Not:</strong> Platform'u kullanarak bu Kullanım Koşullarını
+                okuduğunuzu, anladığınızı ve kabul ettiğinizi beyan etmiş olursunuz.</p>
+        </article>
     </main>
 
     <footer class="footer">
@@ -642,17 +647,17 @@
                     <ul class="footer-links">
                         <li><a href="about.html">Hakkımızda</a></li>
                         <li><a href="contact.html">İletişim</a></li>
-                        <li><a href="index.html#hub">Kategoriler</a></li>
+                        <li><a href="../index.html#hub">Kategoriler</a></li>
                         <li><a href="careers.html">Kariyer</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h4>Kategoriler</h4>
                     <ul class="footer-links">
-                        <li><a href="eticaret.html">E-Ticaret</a></li>
-                        <li><a href="finans.html">Finans</a></li>
-                        <li><a href="egitim.html">Eğitim</a></li>
-                        <li><a href="tasarim.html">Tasarım</a></li>
+                        <li><a href="#">E-Ticaret</a></li>
+                        <li><a href="#">Finans</a></li>
+                        <li><a href="#">Eğitim</a></li>
+                        <li><a href="#">Tasarım</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">

@@ -5,10 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="Tıklabari Kullanım Koşulları - Web sitemizi kullanırken uymanız gereken kurallar ve şartlar.">
-    <title>Kullanım Koşulları | Tıklabari</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        content="En iyi online eğitim platformları, kurslar ve sertifika programları. Kendinizi geliştirin.">
+    <title>Online Eğitim | Tıklabari</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
@@ -260,58 +258,83 @@
         }
 
         .page-content {
-            max-width: 800px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: var(--spacing-2xl) var(--spacing-lg)
         }
 
-        .page-content h2 {
-            margin-top: var(--spacing-2xl);
-            padding-top: var(--spacing-lg);
-            border-top: 1px solid var(--border-color);
+        .platform-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl)
+        }
+
+        .platform-card {
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            box-shadow: var(--card-shadow);
+            border: 1px solid var(--border-color);
+            transition: all var(--transition-base);
+            position: relative;
+            overflow: hidden
+        }
+
+        .platform-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--card-shadow-hover)
+        }
+
+        .platform-icon {
+            font-size: 3rem;
+            margin-bottom: var(--spacing-sm)
+        }
+
+        .platform-card h3 {
+            color: var(--text-color);
+            margin-bottom: var(--spacing-sm)
+        }
+
+        .platform-card p {
             margin-bottom: var(--spacing-md);
-            color: var(--text-color)
+            line-height: 1.7
         }
 
-        .page-content h2:first-of-type {
-            margin-top: 0;
-            padding-top: 0;
-            border-top: none
+        .platform-features {
+            list-style: none;
+            margin-bottom: var(--spacing-md)
         }
 
-        .page-content h3 {
-            margin-top: var(--spacing-lg);
-            margin-bottom: var(--spacing-sm);
-            color: var(--text-color)
+        .platform-features li {
+            padding: var(--spacing-xs) 0;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs)
         }
 
-        .page-content p {
-            margin-bottom: var(--spacing-md);
-            line-height: 1.8
+        .platform-features li::before {
+            content: '✓';
+            color: var(--primary-color);
+            font-weight: 700
         }
 
-        .page-content ul,
-        .page-content ol {
-            margin-bottom: var(--spacing-md);
-            padding-left: var(--spacing-lg)
-        }
-
-        .page-content li {
-            margin-bottom: var(--spacing-xs);
-            line-height: 1.8
-        }
-
-        .page-content strong {
-            color: var(--text-color)
-        }
-
-        .legal-last-updated {
-            background: var(--bg-secondary);
-            padding: var(--spacing-md);
+        .platform-link {
+            display: inline-flex;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-decoration: none;
             border-radius: var(--radius-md);
-            margin-bottom: var(--spacing-xl);
-            font-style: italic;
-            color: var(--text-muted)
+            font-weight: 600;
+            transition: all var(--transition-base);
+            box-shadow: 0 4px 16px hsla(var(--primary-hue), 80%, 50%, 0.3)
+        }
+
+        .platform-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px hsla(var(--primary-hue), 80%, 50%, 0.4)
         }
 
         .footer {
@@ -468,6 +491,10 @@
                 padding: var(--spacing-xl) var(--spacing-md)
             }
 
+            .platform-grid {
+                grid-template-columns: 1fr
+            }
+
             .footer-content {
                 grid-template-columns: 1fr;
                 text-align: center
@@ -482,140 +509,106 @@
 
 <body>
     <header class="header">
-        <div class="header-container">
-            <a href="index.html" class="logo">Tıklabari</a>
+        <div class="header-container"><a href="../index.html" class="logo">Tıklabari</a>
             <nav>
                 <ul class="nav-menu" id="navMenu">
-                    <li><a href="index.html">Ana Sayfa</a></li>
+                    <li><a href="../index.html">Ana Sayfa</a></li>
                     <li><a href="about.html">Hakkımızda</a></li>
                     <li><a href="contact.html">İletişim</a></li>
                     <li><a href="careers.html">Kariyer</a></li>
                 </ul>
             </nav>
-            <div class="header-actions">
-                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü"><span>☰</span></button>
-                <button class="theme-toggle" id="themeToggle" aria-label="Karanlık mod"></button>
-            </div>
+            <div class="header-actions"><button class="mobile-menu-toggle" id="mobileMenuToggle"
+                    aria-label="Menü"><span>☰</span></button><button class="theme-toggle" id="themeToggle"
+                    aria-label="Karanlık mod"></button></div>
         </div>
     </header>
 
     <section class="page-header">
-        <h1>Kullanım Koşulları</h1>
-        <p>Tıklabari platformunu kullanırken uymanız gereken kurallar</p>
+        <h1>🎓 Online Eğitim</h1>
+        <p>Kendinizi geliştirmeniz için en iyi öğrenme platformları</p>
     </section>
 
     <main class="page-content">
-        <div class="legal-last-updated">Son Güncellenme: 11 Şubat 2026</div>
+        <div class="platform-grid">
+            <div class="platform-card">
+                <div class="platform-icon">📝</div>
+                <h3>Udemy</h3>
+                <p>Binlerce kategoride, her seviyeye uygun uygun fiyatlı online kurslar.</p>
+                <ul class="platform-features">
+                    <li>Ömür boyu erişim</li>
+                    <li>Mobil uygulama desteği</li>
+                    <li>Sertifika imkanı</li>
+                    <li>Geniş eğitmen yelpazesi</li>
+                </ul>
+                <a href="https://www.udemy.com" target="_blank" class="platform-link">Eğitime Başla →</a>
+            </div>
 
-        <article>
-            <p>Bu Kullanım Koşulları, Tıklabari web sitesini (bundan sonra "Platform" olarak anılacaktır) kullanımınızı
-                düzenler. Platformu kullanarak bu koşulları kabul etmiş sayılırsınız.</p>
+            <div class="platform-card">
+                <div class="platform-icon">🏛️</div>
+                <h3>Coursera</h3>
+                <p>Dünyanın en iyi üniversitelerinden ve şirketlerinden sertifika programları.</p>
+                <ul class="platform-features">
+                    <li>Üniversite onaylı sertifikalar</li>
+                    <li>Akademik içerik</li>
+                    <li>Uzmanlık programları</li>
+                    <li>Ücretsiz izleme seçeneği</li>
+                </ul>
+                <a href="https://www.coursera.org" target="_blank" class="platform-link">Keşfet →</a>
+            </div>
 
-            <h2>1. Genel Hükümler</h2>
-            <p>Tıklabari, kullanıcılara çeşitli dijital platformlara, araçlara ve fırsatlara erişim sağlayan bir hub
-                hizmetidir. Platform üzerinde sunulan tüm içerik, linkler ve bilgiler bilgilendirme amaçlıdır.</p>
-            <ul>
-                <li>Platform'u yalnızca yasal amaçlar için kullanabilirsiniz</li>
-                <li>18 yaşından küçükseniz, Platform'u ebeveyn veya vasinizin izni ile kullanabilirsiniz</li>
-                <li>Hesap oluşturmanız durumunda doğru ve güncel bilgiler vermelisiniz</li>
-            </ul>
+            <div class="platform-card">
+                <div class="platform-icon">💻</div>
+                <h3>BTK Akademi</h3>
+                <p>Türkiye'nin teknoloji odaklı ücretsiz eğitim platformu.</p>
+                <ul class="platform-features">
+                    <li>Tamamen ücretsiz içerik</li>
+                    <li>Yazılım ve bilişim odaklı</li>
+                    <li>Resmi sertifika</li>
+                    <li>E-Devlet entegrasyonu</li>
+                </ul>
+                <a href="https://www.btkakademi.gov.tr" target="_blank" class="platform-link">Hemen Öğren →</a>
+            </div>
 
-            <h2>2. Fikri Mülkiyet Hakları</h2>
-            <p>Platform üzerindeki tüm içerik, tasarım, logolar, metneler ve diğer materyaller Tıklabari'nin veya lisans
-                verenlerin mülkiyetindedir ve telif hakları ile korunmaktadır.</p>
-            <ul>
-                <li>Platform içeriğini izinsiz kopyalayamaz, dağıtamaz veya değiştiremezsiniz</li>
-                <li>Tıklabari logosunu ve markasını izinsiz kullanamazsınız</li>
-                <li>İçeriği ticari amaçlarla kullanamazsınız</li>
-            </ul>
+            <div class="platform-card">
+                <div class="platform-icon">🎨</div>
+                <h3>Skillshare</h3>
+                <p>Yaratıcı beceriler için topluluk odaklı online ders platformu.</p>
+                <ul class="platform-features">
+                    <li>Tasarım ve sanat odaklı</li>
+                    <li>Proje bazlı öğrenme</li>
+                    <li>Sınırsız erişim paketi</li>
+                    <li>Yaratıcı topluluk</li>
+                </ul>
+                <a href="https://www.skillshare.com" target="_blank" class="platform-link">Yaratıcılığını Geliştir →</a>
+            </div>
 
-            <h2>3. Kullanıcı Sorumlulukları</h2>
-            <p>Platform kullanıcısı olarak aşağıdaki kurallara uymayı kabul edersiniz:</p>
-            <ul>
-                <li><strong>Yasadışı Faaliyetler:</strong> Platform'u yasa dışı amaçlarla kullanmayacaksınız</li>
-                <li><strong>Güvenlik:</strong> Platform güvenliğini tehlikeye atacak davranışlarda bulunmayacaksınız
-                </li>
-                <li><strong>Spam:</strong> Spam, zararlı yazılım veya virüs göndermeyeceksiniz</li>
-                <li><strong>Diğer Kullanıcılar:</strong> Diğer kullanıcıların haklarına saygı göstereceksiniz</li>
-                <li><strong>Bilgilerin Doğruluğu:</strong> Sağladığınız bilgilerin doğru ve güncel olmasını
-                    sağlayacaksınız</li>
-            </ul>
+            <div class="platform-card">
+                <div class="platform-icon">🔤</div>
+                <h3>Duolingo</h3>
+                <p>Oyunlaştırılmış yöntemlerle dil öğrenmenin en eğlenceli yolu.</p>
+                <ul class="platform-features">
+                    <li>Ücretsiz dil öğrenimi</li>
+                    <li>Kısa günlük dersler</li>
+                    <li>Çok sayıda dil seçeneği</li>
+                    <li>Liderlik tabloları</li>
+                </ul>
+                <a href="https://www.duolingo.com" target="_blank" class="platform-link">Dil Öğren →</a>
+            </div>
 
-            <h2>4. Üçüncü Taraf Bağlantılar</h2>
-            <p>Platform, üçüncü taraf web sitelerine bağlantılar içerebilir. Bu bağlantılar yalnızca kolaylık sağlamak
-                amacıyla sunulmaktadır:</p>
-            <ul>
-                <li>Üçüncü taraf sitelerin içeriğinden sorumlu değiliz</li>
-                <li>Bu sitelerin gizlilik uygulamaları veya kullanım koşulları için sorumluluk kabul etmiyoruz</li>
-                <li>Bağlantılara tıkladığınızda kendi sorumluluğunuzdadır</li>
-            </ul>
-
-            <h2>5. Hizmet Kesintileri ve Değişiklikler</h2>
-            <p>Tıklabari, Platform hizmetlerini önceden bildirimde bulunmaksızın değiştirme, askıya alma veya
-                sonlandırma hakkını saklı tutar:</p>
-            <ul>
-                <li>Bakım ve güncellemeler için hizmet kesintileri olabilir</li>
-                <li>Platform özelliklerini istediğimiz zaman değiştirebiliriz</li>
-                <li>Kullanıcı deneyimini iyileştirmek için sürekli geliştirmeler yapabiliriz</li>
-            </ul>
-
-            <h2>6. Sorumluluk Reddi</h2>
-            <p>Platform "olduğu gibi" sunulmaktadır. Tıklabari aşağıdaki konularda garanti vermez:</p>
-            <ul>
-                <li>Platform'un kesintisiz veya hatasız çalışacağı</li>
-                <li>Platform üzerindeki bilgilerin doğruluğu, güvenilirliği veya tamlığı</li>
-                <li>Platform kullanımından doğacak sonuçlar</li>
-                <li>Üçüncü taraf bağlantılar aracılığıyla erişilen içerik</li>
-            </ul>
-
-            <h2>7. Sorumluluk Sınırlaması</h2>
-            <p>Tıklabari, aşağıdaki durumlardan kaynaklanan zararlardan sorumlu tutulamaz:</p>
-            <ul>
-                <li>Platform kullanımı veya kullanılamaması</li>
-                <li>Platform üzerinden erişilen üçüncü taraf hizmetler</li>
-                <li>Veri kaybı veya sistem arızaları</li>
-                <li>Yetkisiz erişim veya güvenlik ihlalleri</li>
-            </ul>
-
-            <h2>8. Hesap Askıya Alma ve Fesih</h2>
-            <p>Tıklabari, aşağıdaki durumlarda kullanıcı hesaplarını askıya alma veya feshetme hakkını saklı tutar:</p>
-            <ul>
-                <li>Kullanım koşullarını ihlal etmeniz</li>
-                <li>Yasadışı faaliyetlerde bulunmanız</li>
-                <li>Platform güvenliğini tehlikeye atmanız</li>
-                <li>Diğer kullanıcıların haklarını ihlal etmeniz</li>
-            </ul>
-
-            <h2>9. Veri Koruma ve Gizlilik</h2>
-            <p>Kişisel verilerinizin korunması bizim için önemlidir. Verilerinizin nasıl toplandığı, kullanıldığı ve
-                korunduğu hakkında detaylı bilgi için <a href="privacy.html"
-                    style="color:var(--primary-color);text-decoration:none;font-weight:600">Gizlilik Politikamızı</a>
-                inceleyiniz.</p>
-
-            <h2>10. Değişiklikler</h2>
-            <p>Bu Kullanım Koşullarını zaman zaman güncelleyebiliriz. Önemli değişiklikler olması durumunda, Platform
-                üzerinden veya e-posta yoluyla bilgilendirileceksiniz. Değişikliklerden sonra Platform'u kullanmaya
-                devam etmeniz, yeni koşulları kabul ettiğiniz anlamına gelir.</p>
-
-            <h2>11. Uygulanacak Hukuk</h2>
-            <p>Bu Kullanım Koşulları, Türkiye Cumhuriyeti yasalarına tabidir. Bu koşullardan kaynaklanan uyuşmazlıklar,
-                İstanbul mahkemelerinde çözümlenecektir.</p>
-
-            <h2>12. İletişim</h2>
-            <p>Kullanım Koşulları hakkında sorularınız varsa, lütfen bizimle iletişime geçin:</p>
-            <ul>
-                <li><strong>E-posta:</strong> <a href="mailto:legal@tiklabari.com"
-                        style="color:var(--primary-color);text-decoration:none">legal@tiklabari.com</a></li>
-                <li><strong>İletişim Formu:</strong> <a href="contact.html"
-                        style="color:var(--primary-color);text-decoration:none;font-weight:600">İletişim Sayfamız</a>
-                </li>
-            </ul>
-
-            <p
-                style="margin-top:var(--spacing-xl);padding:var(--spacing-md);background:var(--bg-secondary);border-radius:var(--radius-md);">
-                <strong style="color:var(--text-color);">Not:</strong> Platform'u kullanarak bu Kullanım Koşullarını
-                okuduğunuzu, anladığınızı ve kabul ettiğinizi beyan etmiş olursunuz.</p>
-        </article>
+            <div class="platform-card">
+                <div class="platform-icon">🧠</div>
+                <h3>Khan Academy</h3>
+                <p>Her yaştan öğrenci için, her konuda tamamen ücretsiz eğitim.</p>
+                <ul class="platform-features">
+                    <li>Sonsuza kadar ücretsiz</li>
+                    <li>Okul dersleri desteği</li>
+                    <li>Kendi hızında ilerleme</li>
+                    <li>Ebeveyn takip paneli</li>
+                </ul>
+                <a href="https://tr.khanacademy.org" target="_blank" class="platform-link">Ücretsiz Öğren →</a>
+            </div>
+        </div>
     </main>
 
     <footer class="footer">
@@ -624,40 +617,36 @@
                 <div class="footer-brand">
                     <div class="footer-logo">Tıklabari</div>
                     <p class="footer-tagline">Dijital dünyanın giriş kapısı. Her tıklama yeni bir fırsat.</p>
-                    <div class="social-links">
-                        <a href="#" class="social-link" aria-label="Twitter"><svg width="20" height="20"
-                                viewBox="0 0 24 24" fill="currentColor">
+                    <div class="social-links"><a href="#" class="social-link" aria-label="Twitter"><svg width="20"
+                                height="20" viewBox="0 0 24 24" fill="currentColor">
                                 <path
                                     d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
-                            </svg></a>
-                        <a href="#" class="social-link" aria-label="Instagram"><svg width="20" height="20"
+                            </svg></a><a href="#" class="social-link" aria-label="Instagram"><svg width="20" height="20"
                                 viewBox="0 0 24 24" fill="currentColor">
                                 <path
                                     d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
-                            </svg></a>
-                        <a href="#" class="social-link" aria-label="LinkedIn"><svg width="20" height="20"
+                            </svg></a><a href="#" class="social-link" aria-label="LinkedIn"><svg width="20" height="20"
                                 viewBox="0 0 24 24" fill="currentColor">
                                 <path
                                     d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                            </svg></a>
-                    </div>
+                            </svg></a></div>
                 </div>
                 <div class="footer-section">
                     <h4>Hızlı Bağlantılar</h4>
                     <ul class="footer-links">
                         <li><a href="about.html">Hakkımızda</a></li>
                         <li><a href="contact.html">İletişim</a></li>
-                        <li><a href="index.html#hub">Kategoriler</a></li>
+                        <li><a href="../index.html#hub">Kategoriler</a></li>
                         <li><a href="careers.html">Kariyer</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h4>Kategoriler</h4>
                     <ul class="footer-links">
-                        <li><a href="#">E-Ticaret</a></li>
-                        <li><a href="#">Finans</a></li>
-                        <li><a href="#">Eğitim</a></li>
-                        <li><a href="#">Tasarım</a></li>
+                        <li><a href="eticaret.html">E-Ticaret</a></li>
+                        <li><a href="finans.html">Finans</a></li>
+                        <li><a href="egitim.html">Eğitim</a></li>
+                        <li><a href="tasarim.html">Tasarım</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">

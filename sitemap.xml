@@ -8,51 +8,51 @@
         <priority>1.0</priority>
     </url>
     <url>
-        <loc>https://tiklabari.com/about.html</loc>
+        <loc>https://tiklabari.com/pages/about.html</loc>
         <lastmod>2026-02-11</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://tiklabari.com/contact.html</loc>
+        <loc>https://tiklabari.com/pages/contact.html</loc>
         <lastmod>2026-02-11</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://tiklabari.com/careers.html</loc>
+        <loc>https://tiklabari.com/pages/careers.html</loc>
         <lastmod>2026-02-11</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
 
     <!-- Kategori Sayfaları -->
-    <url><loc>https://tiklabari.com/eticaret.html</loc><priority>0.9</priority></url>
-    <url><loc>https://tiklabari.com/finans.html</loc><priority>0.9</priority></url>
-    <url><loc>https://tiklabari.com/egitim.html</loc><priority>0.9</priority></url>
-    <url><loc>https://tiklabari.com/tasarim.html</loc><priority>0.9</priority></url>
-    <url><loc>https://tiklabari.com/sosyal-medya.html</loc><priority>0.9</priority></url>
-    <url><loc>https://tiklabari.com/teknoloji.html</loc><priority>0.9</priority></url>
-    <url><loc>https://tiklabari.com/saglik.html</loc><priority>0.9</priority></url>
-    <url><loc>https://tiklabari.com/seyahat.html</loc><priority>0.9</priority></url>
-    <url><loc>https://tiklabari.com/oyun.html</loc><priority>0.9</priority></url>
+    <url><loc>https://tiklabari.com/pages/eticaret.html</loc><priority>0.9</priority></url>
+    <url><loc>https://tiklabari.com/pages/finans.html</loc><priority>0.9</priority></url>
+    <url><loc>https://tiklabari.com/pages/egitim.html</loc><priority>0.9</priority></url>
+    <url><loc>https://tiklabari.com/pages/tasarim.html</loc><priority>0.9</priority></url>
+    <url><loc>https://tiklabari.com/pages/sosyal-medya.html</loc><priority>0.9</priority></url>
+    <url><loc>https://tiklabari.com/pages/teknoloji.html</loc><priority>0.9</priority></url>
+    <url><loc>https://tiklabari.com/pages/saglik.html</loc><priority>0.9</priority></url>
+    <url><loc>https://tiklabari.com/pages/seyahat.html</loc><priority>0.9</priority></url>
+    <url><loc>https://tiklabari.com/pages/oyun.html</loc><priority>0.9</priority></url>
 
     <!-- Blog & Rehberler -->
-    <url><loc>https://tiklabari.com/blog.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
-    <url><loc>https://tiklabari.com/bonus-rehberi.html</loc><priority>0.8</priority></url>
-    <url><loc>https://tiklabari.com/web-sitesi-trafigi.html</loc><priority>0.8</priority></url>
-    <url><loc>https://tiklabari.com/marka-bilinirligi.html</loc><priority>0.8</priority></url>
-    <url><loc>https://tiklabari.com/backlink-stratejileri.html</loc><priority>0.8</priority></url>
-    <url><loc>https://tiklabari.com/global-siralama-taktikleri.html</loc><priority>0.8</priority></url>
-    <url><loc>https://tiklabari.com/tiklama-psikolojisi.html</loc><priority>0.8</priority></url>
-    <url><loc>https://tiklabari.com/affiliate-pazarlama.html</loc><priority>0.8</priority></url>
-    <url><loc>https://tiklabari.com/viral-icerik.html</loc><priority>0.8</priority></url>
-    <url><loc>https://tiklabari.com/site-hizi-deneyimi.html</loc><priority>0.8</priority></url>
-    <url><loc>https://tiklabari.com/yuksek-rekabetli-sektorler.html</loc><priority>0.8</priority></url>
-    <url><loc>https://tiklabari.com/monetization-para-kazanma.html</loc><priority>0.8</priority></url>
+    <url><loc>https://tiklabari.com/pages/blog.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+    <url><loc>https://tiklabari.com/pages/bonus-rehberi.html</loc><priority>0.8</priority></url>
+    <url><loc>https://tiklabari.com/pages/web-sitesi-trafigi.html</loc><priority>0.8</priority></url>
+    <url><loc>https://tiklabari.com/pages/marka-bilinirligi.html</loc><priority>0.8</priority></url>
+    <url><loc>https://tiklabari.com/pages/backlink-stratejileri.html</loc><priority>0.8</priority></url>
+    <url><loc>https://tiklabari.com/pages/global-siralama-taktikleri.html</loc><priority>0.8</priority></url>
+    <url><loc>https://tiklabari.com/pages/tiklama-psikolojisi.html</loc><priority>0.8</priority></url>
+    <url><loc>https://tiklabari.com/pages/affiliate-pazarlama.html</loc><priority>0.8</priority></url>
+    <url><loc>https://tiklabari.com/pages/viral-icerik.html</loc><priority>0.8</priority></url>
+    <url><loc>https://tiklabari.com/pages/site-hizi-deneyimi.html</loc><priority>0.8</priority></url>
+    <url><loc>https://tiklabari.com/pages/yuksek-rekabetli-sektorler.html</loc><priority>0.8</priority></url>
+    <url><loc>https://tiklabari.com/pages/monetization-para-kazanma.html</loc><priority>0.8</priority></url>
 
     <!-- Yasal Sayfalar -->
-    <url><loc>https://tiklabari.com/privacy.html</loc><priority>0.3</priority></url>
-    <url><loc>https://tiklabari.com/terms.html</loc><priority>0.3</priority></url>
-    <url><loc>https://tiklabari.com/cookies.html</loc><priority>0.3</priority></url>
+    <url><loc>https://tiklabari.com/pages/privacy.html</loc><priority>0.3</priority></url>
+    <url><loc>https://tiklabari.com/pages/terms.html</loc><priority>0.3</priority></url>
+    <url><loc>https://tiklabari.com/pages/cookies.html</loc><priority>0.3</priority></url>
 </urlset>

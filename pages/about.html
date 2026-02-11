@@ -4,64 +4,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="En iyi seyahat planlama platformları, otel ve uçak bileti rezervasyon siteleri.">
-    <title>Seyahat & Turizm | Tıklabari</title>
+    <meta name="description"
+        content="Tıklabari hakkında - Dijital dünyanın merkezi hub'ı olarak vizyonumuz, misyonumuz ve değerlerimiz.">
+    <meta name="keywords" content="hakkımızda, tıklabari, dijital hub, vizyon, misyon">
+    <meta name="author" content="Tıklabari">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Hakkımızda | Tıklabari">
+    <meta property="og:description" content="Dijital dünyanın merkezi hub'ı olarak vizyonumuz ve değerlerimiz.">
+    <meta property="og:type" content="website">
+
+    <title>Hakkımızda | Tıklabari</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
+
     <style>
+        /* ============================
+           CSS CUSTOM PROPERTIES (Design Tokens)
+        ============================ */
         :root {
+            /* Color Palette - Light Mode */
             --primary-hue: 260;
             --primary-color: hsl(var(--primary-hue), 82%, 58%);
+            --primary-light: hsl(var(--primary-hue), 82%, 68%);
             --primary-dark: hsl(var(--primary-hue), 82%, 48%);
+
             --secondary-hue: 320;
             --secondary-color: hsl(var(--secondary-hue), 85%, 60%);
+            --secondary-light: hsl(var(--secondary-hue), 85%, 70%);
+
+            --accent-hue: 180;
+            --accent-color: hsl(var(--accent-hue), 75%, 55%);
+
             --bg-color: hsl(240, 20%, 98%);
             --bg-secondary: hsl(240, 15%, 95%);
             --text-color: hsl(240, 15%, 15%);
             --text-muted: hsl(240, 10%, 45%);
             --border-color: hsl(240, 15%, 88%);
+
             --card-bg: hsl(0, 0%, 100%);
             --card-shadow: 0 8px 32px hsla(240, 30%, 20%, 0.08);
             --card-shadow-hover: 0 16px 48px hsla(240, 30%, 20%, 0.16);
+
+            /* Typography */
             --font-primary: 'Outfit', sans-serif;
             --font-secondary: 'Inter', sans-serif;
+
+            /* Spacing */
             --spacing-xs: 0.5rem;
             --spacing-sm: 1rem;
             --spacing-md: 1.5rem;
             --spacing-lg: 2rem;
             --spacing-xl: 3rem;
             --spacing-2xl: 4rem;
+
+            /* Border Radius */
             --radius-sm: 8px;
             --radius-md: 12px;
             --radius-lg: 16px;
+            --radius-xl: 24px;
+
+            /* Transitions */
             --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-            --transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1)
+            --transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
+        /* Dark Mode Variables */
         [data-theme="dark"] {
             --bg-color: hsl(240, 18%, 8%);
             --bg-secondary: hsl(240, 15%, 12%);
             --text-color: hsl(240, 15%, 95%);
             --text-muted: hsl(240, 10%, 65%);
             --border-color: hsl(240, 15%, 20%);
+
             --card-bg: hsl(240, 15%, 14%);
             --card-shadow: 0 8px 32px hsla(0, 0%, 0%, 0.3);
-            --card-shadow-hover: 0 16px 48px hsla(0, 0%, 0%, 0.5)
+            --card-shadow-hover: 0 16px 48px hsla(0, 0%, 0%, 0.5);
         }
 
+        /* ============================
+           GLOBAL RESET & BASE STYLES
+        ============================ */
         *,
         *::before,
         *::after {
             margin: 0;
             padding: 0;
-            box-sizing: border-box
+            box-sizing: border-box;
         }
 
         html {
             scroll-behavior: smooth;
             font-size: 16px;
-            scroll-padding-top: 80px
         }
 
         body {
@@ -70,9 +110,12 @@
             color: var(--text-color);
             line-height: 1.6;
             overflow-x: hidden;
-            transition: background-color var(--transition-base), color var(--transition-base)
+            transition: background-color var(--transition-base), color var(--transition-base);
         }
 
+        /* ============================
+           TYPOGRAPHY
+        ============================ */
         h1,
         h2,
         h3,
@@ -81,31 +124,34 @@
         h6 {
             font-family: var(--font-primary);
             font-weight: 700;
-            line-height: 1.2
+            line-height: 1.2;
         }
 
         h1 {
             font-size: clamp(2.5rem, 5vw, 4.5rem);
             font-weight: 900;
-            letter-spacing: -0.02em
+            letter-spacing: -0.02em;
         }
 
         h2 {
-            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            font-size: clamp(2rem, 4vw, 3.5rem);
             font-weight: 800;
-            letter-spacing: -0.02em
+            letter-spacing: -0.02em;
         }
 
         h3 {
             font-size: clamp(1.25rem, 2.5vw, 1.75rem);
-            font-weight: 600
+            font-weight: 600;
         }
 
         p {
             font-size: clamp(1rem, 1.5vw, 1.125rem);
-            color: var(--text-muted)
+            color: var(--text-muted);
         }
 
+        /* ============================
+           HEADER & NAVIGATION
+        ============================ */
         .header {
             position: fixed;
             top: 0;
@@ -116,11 +162,11 @@
             background: hsla(0, 0%, 100%, 0.8);
             backdrop-filter: blur(20px) saturate(180%);
             border-bottom: 1px solid var(--border-color);
-            transition: all var(--transition-base)
+            transition: all var(--transition-base);
         }
 
         [data-theme="dark"] .header {
-            background: hsla(240, 15%, 12%, 0.85)
+            background: hsla(240, 15%, 12%, 0.85);
         }
 
         .header-container {
@@ -129,7 +175,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: var(--spacing-lg)
+            gap: var(--spacing-lg);
         }
 
         .logo {
@@ -143,20 +189,21 @@
             letter-spacing: -0.02em;
             cursor: pointer;
             transition: transform var(--transition-fast);
-            text-decoration: none
+            text-decoration: none;
         }
 
         .logo:hover {
-            transform: scale(1.05)
+            transform: scale(1.05);
         }
 
+        /* Navigation Menu */
         .nav-menu {
             display: flex;
             list-style: none;
             gap: var(--spacing-md);
             align-items: center;
             flex: 1;
-            justify-content: center
+            justify-content: center;
         }
 
         .nav-menu a {
@@ -165,7 +212,7 @@
             font-weight: 500;
             font-size: 0.95rem;
             transition: color var(--transition-fast);
-            position: relative
+            position: relative;
         }
 
         .nav-menu a::after {
@@ -176,27 +223,28 @@
             width: 0;
             height: 2px;
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            transition: width var(--transition-base)
+            transition: width var(--transition-base);
         }
 
         .nav-menu a:hover {
-            color: var(--primary-color)
+            color: var(--primary-color);
         }
 
         .nav-menu a:hover::after {
-            width: 100%
+            width: 100%;
         }
 
         .nav-menu a.active {
-            color: var(--primary-color)
+            color: var(--primary-color);
         }
 
         .header-actions {
             display: flex;
             align-items: center;
-            gap: var(--spacing-sm)
+            gap: var(--spacing-sm);
         }
 
+        /* Night Mode Toggle */
         .theme-toggle {
             position: relative;
             width: 60px;
@@ -206,7 +254,7 @@
             cursor: pointer;
             transition: background var(--transition-base);
             border: none;
-            outline: none
+            outline: none;
         }
 
         .theme-toggle::before {
@@ -219,26 +267,33 @@
             background: var(--card-bg);
             border-radius: 50%;
             transition: transform var(--transition-base);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15)
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
         }
 
         [data-theme="dark"] .theme-toggle {
-            background: var(--primary-color)
+            background: var(--primary-color);
         }
 
         [data-theme="dark"] .theme-toggle::before {
-            transform: translateX(28px)
+            transform: translateX(28px);
         }
 
+        /* ============================
+           PAGE HEADER (for inner pages)
+        ============================ */
         .page-header {
             padding: calc(var(--spacing-2xl) + 80px) var(--spacing-lg) var(--spacing-2xl);
-            background: linear-gradient(135deg, hsla(var(--primary-hue), 80%, 95%, 1), hsla(var(--secondary-hue), 80%, 95%, 1));
+            background: linear-gradient(135deg,
+                    hsla(var(--primary-hue), 80%, 95%, 1),
+                    hsla(var(--secondary-hue), 80%, 95%, 1));
             text-align: center;
-            border-bottom: 1px solid var(--border-color)
+            border-bottom: 1px solid var(--border-color);
         }
 
         [data-theme="dark"] .page-header {
-            background: linear-gradient(135deg, hsla(var(--primary-hue), 40%, 15%, 1), hsla(var(--secondary-hue), 40%, 15%, 1))
+            background: linear-gradient(135deg,
+                    hsla(var(--primary-hue), 40%, 15%, 1),
+                    hsla(var(--secondary-hue), 40%, 15%, 1));
         }
 
         .page-header h1 {
@@ -246,118 +301,106 @@
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text
+            background-clip: text;
         }
 
         .page-header p {
             font-size: 1.25rem;
             color: var(--text-muted);
             max-width: 700px;
-            margin: 0 auto
-        }
-
-        .page-content {
-            max-width: 1200px;
             margin: 0 auto;
-            padding: var(--spacing-2xl) var(--spacing-lg)
         }
 
-        .platform-grid {
+        /* ============================
+           MAIN CONTENT AREA
+        ============================ */
+        .page-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: var(--spacing-2xl) var(--spacing-lg);
+        }
+
+        .page-content h2 {
+            margin-top: var(--spacing-xl);
+            margin-bottom: var(--spacing-md);
+            color: var(--text-color);
+        }
+
+        .page-content h3 {
+            margin-top: var(--spacing-lg);
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-color);
+        }
+
+        .page-content p {
+            margin-bottom: var(--spacing-md);
+            line-height: 1.8;
+            color: var(--text-muted);
+        }
+
+        /* Info Cards */
+        .info-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: var(--spacing-lg);
-            margin-top: var(--spacing-xl)
+            margin: var(--spacing-xl) 0;
         }
 
-        .platform-card {
+        .info-card {
             background: var(--card-bg);
-            border-radius: var(--radius-lg);
             padding: var(--spacing-lg);
+            border-radius: var(--radius-lg);
             box-shadow: var(--card-shadow);
             border: 1px solid var(--border-color);
+            text-align: center;
             transition: all var(--transition-base);
-            position: relative;
-            overflow: hidden
         }
 
-        .platform-card:hover {
+        .info-card:hover {
             transform: translateY(-4px);
-            box-shadow: var(--card-shadow-hover)
+            box-shadow: var(--card-shadow-hover);
         }
 
-        .platform-icon {
+        .info-card-icon {
             font-size: 3rem;
-            margin-bottom: var(--spacing-sm)
-        }
-
-        .platform-card h3 {
-            color: var(--text-color);
-            margin-bottom: var(--spacing-sm)
-        }
-
-        .platform-card p {
             margin-bottom: var(--spacing-md);
-            line-height: 1.7
         }
 
-        .platform-features {
-            list-style: none;
-            margin-bottom: var(--spacing-md)
+        .info-card h3 {
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-color);
         }
 
-        .platform-features li {
-            padding: var(--spacing-xs) 0;
+        .info-card p {
             color: var(--text-muted);
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-xs)
+            font-size: 1rem;
         }
 
-        .platform-features li::before {
-            content: '✓';
-            color: var(--primary-color);
-            font-weight: 700
-        }
-
-        .platform-link {
-            display: inline-flex;
-            padding: 0.75rem 1.5rem;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            text-decoration: none;
-            border-radius: var(--radius-md);
-            font-weight: 600;
-            transition: all var(--transition-base);
-            box-shadow: 0 4px 16px hsla(var(--primary-hue), 80%, 50%, 0.3)
-        }
-
-        .platform-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px hsla(var(--primary-hue), 80%, 50%, 0.4)
-        }
-
+        /* ============================
+           FOOTER
+        ============================ */
         .footer {
             background: var(--bg-secondary);
             border-top: 1px solid var(--border-color);
-            padding: var(--spacing-xl) var(--spacing-lg)
+            padding: var(--spacing-xl) var(--spacing-lg);
         }
 
         .footer-container {
             max-width: 1400px;
-            margin: 0 auto
+            margin: 0 auto;
         }
 
         .footer-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: var(--spacing-lg);
-            margin-bottom: var(--spacing-lg)
+            margin-bottom: var(--spacing-lg);
         }
 
         .footer-brand {
             display: flex;
             flex-direction: column;
-            gap: var(--spacing-sm)
+            gap: var(--spacing-sm);
         }
 
         .footer-logo {
@@ -367,41 +410,41 @@
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text
+            background-clip: text;
         }
 
         .footer-tagline {
             color: var(--text-muted);
-            font-size: 0.95rem
+            font-size: 0.95rem;
         }
 
         .footer-section h4 {
             font-size: 1.125rem;
             margin-bottom: var(--spacing-sm);
-            color: var(--text-color)
+            color: var(--text-color);
         }
 
         .footer-links {
             list-style: none;
             display: flex;
             flex-direction: column;
-            gap: var(--spacing-xs)
+            gap: var(--spacing-xs);
         }
 
         .footer-links a {
             color: var(--text-muted);
             text-decoration: none;
-            transition: color var(--transition-fast)
+            transition: color var(--transition-fast);
         }
 
         .footer-links a:hover {
-            color: var(--primary-color)
+            color: var(--primary-color);
         }
 
         .social-links {
             display: flex;
             gap: var(--spacing-sm);
-            margin-top: var(--spacing-sm)
+            margin-top: var(--spacing-sm);
         }
 
         .social-link {
@@ -415,14 +458,14 @@
             border-radius: var(--radius-sm);
             color: var(--text-color);
             text-decoration: none;
-            transition: all var(--transition-base)
+            transition: all var(--transition-base);
         }
 
         .social-link:hover {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
             transform: translateY(-4px);
-            box-shadow: 0 6px 20px hsla(var(--primary-hue), 80%, 50%, 0.3)
+            box-shadow: 0 6px 20px hsla(var(--primary-hue), 80%, 50%, 0.3);
         }
 
         .footer-bottom {
@@ -430,22 +473,22 @@
             padding-top: var(--spacing-lg);
             border-top: 1px solid var(--border-color);
             color: var(--text-muted);
-            font-size: 0.95rem
+            font-size: 0.95rem;
         }
 
-        .mobile-menu-toggle {
-            display: none
-        }
-
-        @media (max-width:768px) {
+        /* ============================
+           RESPONSIVE DESIGN
+        ============================ */
+        @media (max-width: 768px) {
             .header {
-                padding: var(--spacing-sm) var(--spacing-md)
+                padding: var(--spacing-sm) var(--spacing-md);
             }
 
             .logo {
-                font-size: 1.5rem
+                font-size: 1.5rem;
             }
 
+            /* Mobile Navigation */
             .nav-menu {
                 position: fixed;
                 top: 70px;
@@ -460,11 +503,11 @@
                 align-items: flex-start;
                 z-index: 999;
                 height: calc(100vh - 70px);
-                border-left: 1px solid var(--border-color)
+                border-left: 1px solid var(--border-color);
             }
 
             .nav-menu.active {
-                right: 0
+                right: 0;
             }
 
             .mobile-menu-toggle {
@@ -475,179 +518,210 @@
                 font-size: 1.5rem;
                 cursor: pointer;
                 padding: 0.5rem;
-                transition: color var(--transition-fast)
+                transition: color var(--transition-fast);
             }
 
             .mobile-menu-toggle:hover {
-                color: var(--primary-color)
+                color: var(--primary-color);
             }
 
             .page-header {
-                padding: calc(var(--spacing-xl) + 70px) var(--spacing-md) var(--spacing-xl)
+                padding: calc(var(--spacing-xl) + 70px) var(--spacing-md) var(--spacing-xl);
             }
 
             .page-content {
-                padding: var(--spacing-xl) var(--spacing-md)
-            }
-
-            .platform-grid {
-                grid-template-columns: 1fr
+                padding: var(--spacing-xl) var(--spacing-md);
             }
 
             .footer-content {
                 grid-template-columns: 1fr;
-                text-align: center
+                text-align: center;
             }
 
             .social-links {
-                justify-content: center
+                justify-content: center;
             }
+        }
+
+        /* Desktop: hide mobile menu toggle */
+        .mobile-menu-toggle {
+            display: none;
+        }
+
+        /* ============================
+           UTILITY CLASSES
+        ============================ */
+        .hidden {
+            display: none !important;
+        }
+
+        html {
+            scroll-padding-top: 80px;
         }
     </style>
 </head>
 
 <body>
+    <!-- ============================
+         HEADER
+    ============================ -->
     <header class="header">
-        <div class="header-container"><a href="index.html" class="logo">Tıklabari</a>
+        <div class="header-container">
+            <a href="../index.html" class="logo">Tıklabari</a>
+
             <nav>
                 <ul class="nav-menu" id="navMenu">
-                    <li><a href="index.html">Ana Sayfa</a></li>
-                    <li><a href="about.html">Hakkımızda</a></li>
+                    <li><a href="../index.html">Ana Sayfa</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="about.html" class="active">Hakkımızda</a></li>
                     <li><a href="contact.html">İletişim</a></li>
                     <li><a href="careers.html">Kariyer</a></li>
                 </ul>
             </nav>
-            <div class="header-actions"><button class="mobile-menu-toggle" id="mobileMenuToggle"
-                    aria-label="Menü"><span>☰</span></button><button class="theme-toggle" id="themeToggle"
-                    aria-label="Karanlık mod"></button></div>
+
+            <div class="header-actions">
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü">
+                    <span>☰</span>
+                </button>
+                <button class="theme-toggle" id="themeToggle" aria-label="Karanlık mod değiştir"></button>
+            </div>
         </div>
     </header>
 
+    <!-- ============================
+         PAGE HEADER
+    ============================ -->
     <section class="page-header">
-        <h1>✈️ Seyahat & Turizm</h1>
-        <p>Hayalinizdeki seyahati planlamanız için en iyi platformlar ve araçlar.</p>
+        <h1>Hakkımızda</h1>
+        <p>Dijital dünyanın giriş kapısı olarak misyonumuz ve vizyonumuz</p>
     </section>
 
+    <!-- ============================
+         MAIN CONTENT
+    ============================ -->
     <main class="page-content">
-        <div class="platform-grid">
-            <div class="platform-card">
-                <div class="platform-icon">🏨</div>
-                <h3>Booking.com</h3>
-                <p>Dünya çapında milyonlarca otel, ev ve konaklama seçeneği için en büyük adres.</p>
-                <ul class="platform-features">
-                    <li>Ücretsiz iptal seçenekleri</li>
-                    <li>Müşteri puanları ve yorumlar</li>
-                    <li>Mobil özel indirimler</li>
-                    <li>Güvenli rezervasyon</li>
-                </ul>
-                <a href="https://www.booking.com" target="_blank" class="platform-link">Otel Bul →</a>
+        <article>
+            <h2>Biz Kimiz?</h2>
+            <p>
+                Tıklabari, dijital dünyanın merkezi hub'ı olarak 2026 yılında kurulmuştur. Amacımız, kullanıcılarımıza
+                çeşitli dijital platformlara, fırsatlara ve araçlara tek bir yerden kolay erişim sağlamaktır.
+                "Tıklabari" adı, Türkçe'de "en azından tıkla" anlamına gelmekle birlikte, markamız profesyonel,
+                güvenilir ve modern bir kimliğe sahiptir.
+            </p>
+            <p>
+                Her gün milyonlarca insan internette gezinirken farklı platformlar, linkler ve fırsatlar arasında
+                kaybolmaktadır. Biz bu karmaşayı ortadan kaldırmak ve kullanıcılarımıza organize, güvenilir ve kullanıcı
+                dostu bir deneyim sunmak için buradayız.
+            </p>
+
+            <div class="info-cards">
+                <div class="info-card">
+                    <div class="info-card-icon">🎯</div>
+                    <h3>Misyonumuz</h3>
+                    <p>Dijital dünyayı herkes için daha erişilebilir, organize ve güvenilir hale getirmek.</p>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-card-icon">🚀</div>
+                    <h3>Vizyonumuz</h3>
+                    <p>Türkiye'nin ve dünyanın en güvenilir dijital hub'ı olmak.</p>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-card-icon">💎</div>
+                    <h3>Değerlerimiz</h3>
+                    <p>Güvenilirlik, kullanıcı odaklılık, yenilikçilik ve şeffaflık.</p>
+                </div>
             </div>
 
-            <div class="platform-card">
-                <div class="platform-icon">🏠</div>
-                <h3>Airbnb</h3>
-                <p>Yerel halkın evlerinde kalarak benzersiz bir seyahat deneyimi yaşayın.</p>
-                <ul class="platform-features">
-                    <li>Eşsiz ev seçenekleri</li>
-                    <li>Deneyimler ve turlar</li>
-                    <li>Esnek arama kriterleri</li>
-                    <li>Güvenilir ödeme sistemi</li>
-                </ul>
-                <a href="https://www.airbnb.com" target="_blank" class="platform-link">Ev Kirala →</a>
-            </div>
+            <h2>Neden Tıklabari?</h2>
+            <p>
+                İnternet her geçen gün daha karmaşık hale geliyor. Binlerce platform, uygulama ve hizmet arasında
+                kaybolmak çok kolay. Tıklabari, bu karmaşayı ortadan kaldırarak kullanıcılarına:
+            </p>
+            <ul>
+                <li><strong>Organize Erişim:</strong> İhtiyacınız olan tüm dijital araçlar ve platformlar tek bir yerde.
+                </li>
+                <li><strong>Güvenilirlik:</strong> Sadece doğrulanmış ve güvenilir platformları sunuyoruz.</li>
+                <li><strong>Zaman Tasarrufu:</strong> Aramak yerine hemen bulun, hemen kullanın.</li>
+                <li><strong>Modern Deneyim:</strong> Kullanıcı dostu arayüz ve hızlı performans.</li>
+                <li><strong>Sürekli Güncelleme:</strong> En yeni fırsatlar ve araçlar düzenli olarak eklenir.</li>
+            </ul>
 
-            <div class="platform-card">
-                <div class="platform-icon">✈️</div>
-                <h3>Skyscanner</h3>
-                <p>Yüzlerce havayolu arasından en ucuz uçak biletlerini saniyeler içinde bulun.</p>
-                <ul class="platform-features">
-                    <li>Fiyat karşılaştırma</li>
-                    <li>En ucuz ay takvimi</li>
-                    <li>Fiyat alarmı sistemi</li>
-                    <li>Aktarmasız uçuş filtresi</li>
-                </ul>
-                <a href="https://www.skyscanner.com.tr" target="_blank" class="platform-link">Bilet Ara →</a>
-            </div>
+            <h2>Ekibimiz</h2>
+            <p>
+                Tıklabari ekibi, dijital pazarlama, yazılım geliştirme, kullanıcı deneyimi tasarımı ve içerik yönetimi
+                konularında uzman profesyonellerden oluşmaktadır. Tutkulu, yenilikçi ve kullanıcı odaklı yaklaşımımızla
+                her gün daha iyi bir hizmet sunmak için çalışıyoruz.
+            </p>
 
-            <div class="platform-card">
-                <div class="platform-icon">🎒</div>
-                <h3>Tripadvisor</h3>
-                <p>Gezilecek yerler, restoranlar ve aktiviteler hakkında milyonlarca kullanıcı yorumu.</p>
-                <ul class="platform-features">
-                    <li>Kullanıcı fotoğrafları</li>
-                    <li>Popüler mekan listeleri</li>
-                    <li>Tur rezervasyonu</li>
-                    <li>Seyahat forumları</li>
-                </ul>
-                <a href="https://www.tripadvisor.com.tr" target="_blank" class="platform-link">Hemen Planla →</a>
-            </div>
-
-            <div class="platform-card">
-                <div class="platform-icon">🇹🇷</div>
-                <h3>Etstur</h3>
-                <p>Türkiye'nin en büyük turizm platformu. Yurt içi ve yurt dışı tatil seçenekleri.</p>
-                <ul class="platform-features">
-                    <li>Erken rezervasyon fırsatları</li>
-                    <li>Kapsamlı tur paketleri</li>
-                    <li>Koşulsuz iptal sigortası</li>
-                    <li>Zengin otel yelpazesi</li>
-                </ul>
-                <a href="https://www.etstur.com" target="_blank" class="platform-link">Tatilde Git →</a>
-            </div>
-
-            <div class="platform-card">
-                <div class="platform-icon">🗺️</div>
-                <h3>Google Maps</h3>
-                <p>Navigasyon, mekan keşfi ve seyahat rotaları için vazgeçilmez dijital harita.</p>
-                <ul class="platform-features">
-                    <li>Gerçek zamanlı trafik bilgisi</li>
-                    <li>Mekan incelemeleri</li>
-                    <li>Toplu taşıma rotaları</li>
-                    <li>Sokak görünümü</li>
-                </ul>
-                <a href="https://maps.google.com" target="_blank" class="platform-link">Keşfe Başla →</a>
-            </div>
-        </div>
+            <h2>Geleceğe Bakış</h2>
+            <p>
+                Önümüzdeki yıllarda Tıklabari'yi sadece bir link aggregatörü olmanın ötesine taşımayı hedefliyoruz.
+                Yapay zeka destekli öneriler, kişiselleştirilmiş kullanıcı deneyimleri ve daha geniş bir kategori
+                yelpazesi ile dijital dünyanın vazgeçilmez anahtarı olmayı amaçlıyoruz.
+            </p>
+            <p>
+                Bizimle bu yolculukta olmak ister misiniz? <a href="contact.html"
+                    style="color: var(--primary-color); text-decoration: none; font-weight: 600;">İletişime geçin</a>
+                veya <a href="careers.html"
+                    style="color: var(--primary-color); text-decoration: none; font-weight: 600;">kariyer
+                    fırsatlarımıza</a> göz atın.
+            </p>
+        </article>
     </main>
 
+    <!-- ============================
+         FOOTER
+    ============================ -->
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-content">
                 <div class="footer-brand">
                     <div class="footer-logo">Tıklabari</div>
                     <p class="footer-tagline">Dijital dünyanın giriş kapısı. Her tıklama yeni bir fırsat.</p>
-                    <div class="social-links"><a href="#" class="social-link" aria-label="Twitter"><svg width="20"
-                                height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Twitter">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                                 <path
                                     d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
-                            </svg></a><a href="#" class="social-link" aria-label="Instagram"><svg width="20" height="20"
-                                viewBox="0 0 24 24" fill="currentColor">
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Instagram">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                                 <path
                                     d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
-                            </svg></a><a href="#" class="social-link" aria-label="LinkedIn"><svg width="20" height="20"
-                                viewBox="0 0 24 24" fill="currentColor">
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="LinkedIn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                                 <path
                                     d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                            </svg></a></div>
+                            </svg>
+                        </a>
+                    </div>
                 </div>
+
                 <div class="footer-section">
                     <h4>Hızlı Bağlantılar</h4>
                     <ul class="footer-links">
                         <li><a href="about.html">Hakkımızda</a></li>
                         <li><a href="contact.html">İletişim</a></li>
-                        <li><a href="index.html#hub">Kategoriler</a></li>
+                        <li><a href="blog.html">Blog</a></li>
                         <li><a href="careers.html">Kariyer</a></li>
                     </ul>
                 </div>
+
                 <div class="footer-section">
                     <h4>Kategoriler</h4>
                     <ul class="footer-links">
-                        <li><a href="eticaret.html">E-Ticaret</a></li>
-                        <li><a href="finans.html">Finans</a></li>
-                        <li><a href="egitim.html">Eğitim</a></li>
-                        <li><a href="tasarim.html">Tasarım</a></li>
+                        <li><a href="#">E-Ticaret</a></li>
+                        <li><a href="#">Finans</a></li>
+                        <li><a href="#">Eğitim</a></li>
+                        <li><a href="#">Tasarım</a></li>
                     </ul>
                 </div>
+
                 <div class="footer-section">
                     <h4>Yasal</h4>
                     <ul class="footer-links">
@@ -657,13 +731,52 @@
                     </ul>
                 </div>
             </div>
+
             <div class="footer-bottom">
                 <p>&copy; 2026 Tıklabari. Tüm hakları saklıdır.</p>
             </div>
         </div>
     </footer>
 
-    <script>const themeToggle = document.getElementById('themeToggle'), html = document.documentElement, currentTheme = localStorage.getItem('theme') || 'light'; html.setAttribute('data-theme', currentTheme); themeToggle.addEventListener('click', () => { const theme = html.getAttribute('data-theme'), newTheme = theme === 'light' ? 'dark' : 'light'; html.setAttribute('data-theme', newTheme); localStorage.setItem('theme', newTheme) }); const mobileMenuToggle = document.getElementById('mobileMenuToggle'), navMenu = document.getElementById('navMenu'); if (mobileMenuToggle) { mobileMenuToggle.addEventListener('click', () => navMenu.classList.toggle('active')); document.addEventListener('click', (e) => { if (!navMenu.contains(e.target) && !mobileMenuToggle.contains(e.target)) { navMenu.classList.remove('active') } }) }</script>
+    <!-- ============================
+         JAVASCRIPT
+    ============================ -->
+    <script>
+        // ============================
+        // THEME TOGGLE (Night Mode)
+        // ============================
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', currentTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const theme = html.getAttribute('data-theme');
+            const newTheme = theme === 'light' ? 'dark' : 'light';
+
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+
+        // ============================
+        // MOBILE MENU TOGGLE
+        // ============================
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        if (mobileMenuToggle) {
+            mobileMenuToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!navMenu.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+                    navMenu.classList.remove('active');
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>
