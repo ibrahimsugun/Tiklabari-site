@@ -1,0 +1,249 @@
+<!--
+  ============================================================
+  TIKLABARI — Navigation Header Bileşeni
+  ============================================================
+  Kullanım: Bu dosyayı herhangi bir sayfaya şu şekilde dahil edebilirsin:
+    1. HTML olarak: bu dosyanın içeriğini <body>'nin başına kopyala
+    2. iframe ile: <iframe src="nav/navbar.html" ...>
+    3. JS fetch ile: fetch('nav/navbar.html') + innerHTML
+  
+  Tüm CSS sınıfları "tkl-nav__" (BEM) prefix'i ile scoped edilmiştir.
+  Bu sayede mevcut sayfa stilleriyle çakışma olmaz.
+  ============================================================
+-->
+
+<!--
+============================
+  HTML YAPISI
+============================
+-->
+<header class="tkl-nav">
+
+  <!-- Arka plan blur katmanı -->
+  <div class="tkl-nav__backdrop" aria-hidden="true"></div>
+
+  <div class="tkl-nav__inner">
+
+    <!-- ── LOGO ── -->
+    <a href="https://tiklabari.com" class="tkl-nav__logo" aria-label="Tiklabari Anasayfa">
+      <!-- SVG Mouse İkonu -->
+      <svg class="tkl-nav__logo-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="8" y="2" width="16" height="28" rx="8" stroke="url(#lg1)" stroke-width="2"/>
+        <line x1="16" y1="2" x2="16" y2="14" stroke="url(#lg1)" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="16" cy="18" r="2.5" fill="url(#lg1)"/>
+        <defs>
+          <linearGradient id="lg1" x1="8" y1="2" x2="24" y2="30" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#a78bfa"/>
+            <stop offset="1" stop-color="#38bdf8"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <span class="tkl-nav__logo-text">Tiklabari</span>
+    </a>
+
+    <!-- ── ANA NAVİGASYON ── -->
+    <nav class="tkl-nav__menu" id="tkl-main-nav" aria-label="Ana Navigasyon">
+      <ul class="tkl-nav__list" role="list">
+
+        <!-- ═══ Mouse Tools Dropdown ═══ -->
+        <li class="tkl-nav__item tkl-nav__item--dropdown" data-dropdown="mouse-tools">
+          <button
+            class="tkl-nav__link tkl-nav__link--dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+            aria-controls="dropdown-mouse-tools"
+            id="btn-mouse-tools"
+          >
+            <span class="tkl-nav__link-icon" aria-hidden="true">🖱️</span>
+            Mouse Tools
+            <!-- Ok İkonu -->
+            <svg class="tkl-nav__chevron" viewBox="0 0 12 8" fill="none" aria-hidden="true">
+              <path d="M1 1L6 7L11 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+
+          <!--
+            Dropdown Paneli
+            "invisible bridge" tekniği: ::before pseudo-elementi ile
+            buton ile dropdown arasına görünmez bir köprü eklenir.
+            Bu sayede mouse geçişinde dropdown kapanmaz.
+          -->
+          <div
+            class="tkl-nav__dropdown"
+            id="dropdown-mouse-tools"
+            role="region"
+            aria-labelledby="btn-mouse-tools"
+          >
+            <div class="tkl-nav__dropdown-inner">
+              <!-- Kategori başlığı -->
+              <p class="tkl-nav__dropdown-label">Mouse Test Araçları</p>
+
+              <a href="/clicktest/" class="tkl-nav__dropdown-item">
+                <span class="tkl-nav__dropdown-icon">🖱️</span>
+                <span class="tkl-nav__dropdown-info">
+                  <strong class="tkl-nav__dropdown-title">Tık Testi</strong>
+                  <span class="tkl-nav__dropdown-desc">Tıklama hızı ve çift tık doğruluğu</span>
+                </span>
+              </a>
+
+              <a href="/mouseoptictest/" class="tkl-nav__dropdown-item">
+                <span class="tkl-nav__dropdown-icon">⊹</span>
+                <span class="tkl-nav__dropdown-info">
+                  <strong class="tkl-nav__dropdown-title">İmleç Testi</strong>
+                  <span class="tkl-nav__dropdown-desc">Sensör kararlılığı ve drift analizi</span>
+                </span>
+              </a>
+
+              <a href="/scrolltest/" class="tkl-nav__dropdown-item">
+                <span class="tkl-nav__dropdown-icon">🔄</span>
+                <span class="tkl-nav__dropdown-info">
+                  <strong class="tkl-nav__dropdown-title">Tekerlek Testi</strong>
+                  <span class="tkl-nav__dropdown-desc">Scroll gecikmesi ve jitter kontrolü</span>
+                </span>
+              </a>
+            </div>
+          </div>
+        </li>
+
+        <!-- ═══ Keyboard Tools Dropdown ═══ -->
+        <li class="tkl-nav__item tkl-nav__item--dropdown" data-dropdown="keyboard-tools">
+          <button
+            class="tkl-nav__link tkl-nav__link--dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+            aria-controls="dropdown-keyboard-tools"
+            id="btn-keyboard-tools"
+          >
+            <span class="tkl-nav__link-icon" aria-hidden="true">⌨️</span>
+            Keyboard Tools
+            <svg class="tkl-nav__chevron" viewBox="0 0 12 8" fill="none" aria-hidden="true">
+              <path d="M1 1L6 7L11 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+
+          <div
+            class="tkl-nav__dropdown"
+            id="dropdown-keyboard-tools"
+            role="region"
+            aria-labelledby="btn-keyboard-tools"
+          >
+            <div class="tkl-nav__dropdown-inner">
+              <p class="tkl-nav__dropdown-label">Klavye Test Araçları</p>
+
+              <a href="#" class="tkl-nav__dropdown-item">
+                <span class="tkl-nav__dropdown-icon">⚡</span>
+                <span class="tkl-nav__dropdown-info">
+                  <strong class="tkl-nav__dropdown-title">Klavye Hız Testi</strong>
+                  <span class="tkl-nav__dropdown-desc">Tuş vuruş hızı ve gecikme ölçümü</span>
+                </span>
+              </a>
+
+              <a href="#" class="tkl-nav__dropdown-item">
+                <span class="tkl-nav__dropdown-icon">🚀</span>
+                <span class="tkl-nav__dropdown-info">
+                  <strong class="tkl-nav__dropdown-title">Boşluk Basma Testi</strong>
+                  <span class="tkl-nav__dropdown-desc">Spacebar tepki süresi analizi</span>
+                </span>
+              </a>
+            </div>
+          </div>
+        </li>
+
+        <!-- ═══ PC Tools Dropdown ═══ -->
+        <li class="tkl-nav__item tkl-nav__item--dropdown" data-dropdown="pc-tools">
+          <button
+            class="tkl-nav__link tkl-nav__link--dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+            aria-controls="dropdown-pc-tools"
+            id="btn-pc-tools"
+          >
+            <span class="tkl-nav__link-icon" aria-hidden="true">🖥️</span>
+            PC Tools
+            <svg class="tkl-nav__chevron" viewBox="0 0 12 8" fill="none" aria-hidden="true">
+              <path d="M1 1L6 7L11 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+
+          <div
+            class="tkl-nav__dropdown"
+            id="dropdown-pc-tools"
+            role="region"
+            aria-labelledby="btn-pc-tools"
+          >
+            <div class="tkl-nav__dropdown-inner">
+              <p class="tkl-nav__dropdown-label">Bilgisayar Test Araçları</p>
+
+              <a href="#" class="tkl-nav__dropdown-item">
+                <span class="tkl-nav__dropdown-icon">⚡</span>
+                <span class="tkl-nav__dropdown-info">
+                  <strong class="tkl-nav__dropdown-title">Klavye Hız Testi</strong>
+                  <span class="tkl-nav__dropdown-desc">Tuş vuruş hızı ve gecikme ölçümü</span>
+                </span>
+              </a>
+
+              <a href="#" class="tkl-nav__dropdown-item">
+                <span class="tkl-nav__dropdown-icon">🚀</span>
+                <span class="tkl-nav__dropdown-info">
+                  <strong class="tkl-nav__dropdown-title">Boşluk Basma Testi</strong>
+                  <span class="tkl-nav__dropdown-desc">Spacebar tepki süresi analizi</span>
+                </span>
+              </a>
+            </div>
+          </div>
+        </li>
+
+        <!-- ═══ CEO Tools (Direkt Link) ═══ -->
+        <li class="tkl-nav__item">
+          <a
+            href="https://tiklabari.com/pages/blog"
+            class="tkl-nav__link"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span class="tkl-nav__link-icon" aria-hidden="true">✍️</span>
+            CEO Tools
+            <!-- Yeni sekme ikonu -->
+            <svg class="tkl-nav__external-icon" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+              <path d="M2 10L10 2M10 2H6M10 2V6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </li>
+
+      </ul>
+    </nav>
+
+    <!-- ── SAĞ BÖLÜM: Contact CTA + Hamburger ── -->
+    <div class="tkl-nav__actions">
+      <!-- Contact CTA Butonu -->
+      <a
+        href="https://tiklabari.com/pages/contact"
+        class="tkl-nav__cta"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="İletişime geç"
+        id="tkl-contact-btn"
+      >
+        <span class="tkl-nav__cta-text">Contact</span>
+        <!-- Ok ikonu -->
+        <svg class="tkl-nav__cta-arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+
+      <!-- Hamburger (Mobil) -->
+      <button
+        class="tkl-nav__hamburger"
+        id="tkl-hamburger"
+        aria-label="Menüyü aç/kapat"
+        aria-expanded="false"
+        aria-controls="tkl-main-nav"
+      >
+        <span class="tkl-nav__hamburger-line"></span>
+        <span class="tkl-nav__hamburger-line"></span>
+        <span class="tkl-nav__hamburger-line"></span>
+      </button>
+    </div>
+
+  </div><!-- /.tkl-nav__inner -->
+</header>

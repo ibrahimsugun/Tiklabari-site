@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Tıklabari Mouse Wheel Tester & Recorder — Kaydırma hareketlerinizi test edin, kaydedin ve yeniden izleyin. Hayalet izler ile akıcılığı görselleştirin.">
+  <title>Tıklabari Wheel Tester & Recorder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- ═══ TIKLABARI NAVBAR (Standalone) ═══ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--tkl-nav-height:68px;--tkl-nav-bg:rgba(7,7,14,.82);--tkl-nav-border:rgba(255,255,255,.07);--tkl-nav-blur:24px;--tkl-nav-font:'Inter','Segoe UI',system-ui,sans-serif;--tkl-nav-font-size:.9rem;--tkl-nav-text:rgba(240,240,248,.92);--tkl-nav-text-dim:rgba(160,160,185,.75);--tkl-nav-accent:#7c6af7;--tkl-nav-accent-2:#38bdf8;--tkl-nav-accent-3:#a78bfa;--tkl-dropdown-bg:rgba(10,10,20,.97);--tkl-dropdown-border:rgba(124,106,247,.18);--tkl-dropdown-shadow:0 24px 60px rgba(0,0,0,.6),0 0 0 1px rgba(124,106,247,.12);--tkl-dropdown-hover:rgba(124,106,247,.08);--tkl-dropdown-radius:16px;--tkl-cta-bg:linear-gradient(135deg,#7c6af7 0%,#38bdf8 100%);--tkl-cta-shadow:0 0 28px rgba(124,106,247,.45);--tkl-t:.22s cubic-bezier(.4,0,.2,1);--tkl-ts:.38s cubic-bezier(.4,0,.2,1)}
+    .tkl-nav{position:sticky;top:0;left:0;right:0;width:100%;height:var(--tkl-nav-height);z-index:9999;font-family:var(--tkl-nav-font);isolation:isolate}
+    .tkl-nav__backdrop{position:absolute;inset:0;background:var(--tkl-nav-bg);backdrop-filter:blur(var(--tkl-nav-blur));-webkit-backdrop-filter:blur(var(--tkl-nav-blur));border-bottom:1px solid var(--tkl-nav-border);box-shadow:0 1px 0 0 var(--tkl-nav-border),0 4px 32px rgba(0,0,0,.25);z-index:-1;transition:box-shadow var(--tkl-t)}
+    .tkl-nav.is-scrolled .tkl-nav__backdrop{background:rgba(7,7,14,.95);box-shadow:0 1px 0 0 rgba(124,106,247,.25),0 8px 40px rgba(0,0,0,.5)}
+    .tkl-nav__inner{display:flex;align-items:center;justify-content:space-between;height:100%;max-width:1280px;margin:0 auto;padding:0 2rem;gap:2rem}
+    .tkl-nav__logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;transition:opacity var(--tkl-t)}.tkl-nav__logo:hover{opacity:.85}
+    .tkl-nav__logo-icon{width:32px;height:32px;flex-shrink:0;filter:drop-shadow(0 0 8px rgba(124,106,247,.5));transition:filter var(--tkl-t)}.tkl-nav__logo:hover .tkl-nav__logo-icon{filter:drop-shadow(0 0 14px rgba(56,189,248,.7))}
+    .tkl-nav__logo-text{font-size:1.2rem;font-weight:800;letter-spacing:-.4px;background:linear-gradient(90deg,#fff 0%,#a78bfa 60%,#38bdf8 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-family:'Outfit','Inter',sans-serif}
+    .tkl-nav__menu{flex:1;display:flex;justify-content:center}.tkl-nav__list{display:flex;align-items:center;gap:.25rem;list-style:none;margin:0;padding:0}.tkl-nav__item{position:relative}
+    .tkl-nav__link{display:flex;align-items:center;gap:6px;padding:.5rem .875rem;font-size:var(--tkl-nav-font-size);font-weight:500;color:var(--tkl-nav-text-dim);text-decoration:none;border-radius:10px;border:none;background:transparent;cursor:pointer;white-space:nowrap;transition:color var(--tkl-t),background var(--tkl-t);letter-spacing:.01em;font-family:var(--tkl-nav-font);line-height:1;position:relative}
+    .tkl-nav__link:hover,.tkl-nav__item--dropdown:hover>.tkl-nav__link{color:var(--tkl-nav-text);background:rgba(255,255,255,.05)}
+    .tkl-nav__link[aria-expanded="true"]{color:var(--tkl-nav-accent-3);background:rgba(124,106,247,.08)}
+    .tkl-nav__link-icon{font-size:.85em;line-height:1;display:inline-block}.tkl-nav__chevron{width:10px;height:10px;margin-left:2px;transition:transform var(--tkl-t);flex-shrink:0;opacity:.7}.tkl-nav__link[aria-expanded="true"] .tkl-nav__chevron{transform:rotate(180deg);opacity:1}
+    .tkl-nav__external-icon{width:10px;height:10px;margin-left:2px;opacity:.5;flex-shrink:0;transition:opacity var(--tkl-t),transform var(--tkl-t)}.tkl-nav__link:hover .tkl-nav__external-icon{opacity:1;transform:translate(2px,-2px)}
+    .tkl-nav__dropdown{visibility:hidden;opacity:0;pointer-events:none;position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(-8px);padding-top:8px;min-width:300px;transition:opacity var(--tkl-t),transform var(--tkl-t),visibility 0s linear .22s}
+    .tkl-nav__dropdown::before{content:'';position:absolute;top:0;left:0;right:0;height:8px;background:transparent}
+    .tkl-nav__item--dropdown:hover>.tkl-nav__dropdown,.tkl-nav__dropdown.is-open{visibility:visible;opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0);transition:opacity var(--tkl-t),transform var(--tkl-t),visibility 0s linear 0s}
+    .tkl-nav__dropdown-inner{background:var(--tkl-dropdown-bg);border:1px solid var(--tkl-dropdown-border);border-radius:var(--tkl-dropdown-radius);box-shadow:var(--tkl-dropdown-shadow);padding:.75rem;overflow:hidden;position:relative}
+    .tkl-nav__dropdown-inner::before{content:'';position:absolute;top:0;left:1.5rem;right:1.5rem;height:1px;background:linear-gradient(90deg,transparent,var(--tkl-nav-accent),var(--tkl-nav-accent-2),transparent);opacity:.6}
+    .tkl-nav__dropdown-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--tkl-nav-text-dim);padding:.25rem .75rem .5rem;margin-bottom:.25rem;opacity:.7}
+    .tkl-nav__dropdown-item{display:flex;align-items:center;gap:14px;padding:.75rem;border-radius:10px;text-decoration:none;color:var(--tkl-nav-text);transition:background var(--tkl-t),transform var(--tkl-t);border:1px solid transparent;margin-bottom:.15rem}.tkl-nav__dropdown-item:last-child{margin-bottom:0}.tkl-nav__dropdown-item:hover{background:var(--tkl-dropdown-hover);border-color:rgba(124,106,247,.15);transform:translateX(4px)}
+    .tkl-nav__dropdown-icon{font-size:1.25rem;width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.04);border-radius:10px;flex-shrink:0;transition:background var(--tkl-t);border:1px solid rgba(255,255,255,.06)}.tkl-nav__dropdown-item:hover .tkl-nav__dropdown-icon{background:rgba(124,106,247,.12);border-color:rgba(124,106,247,.2)}
+    .tkl-nav__dropdown-info{display:flex;flex-direction:column;gap:2px;min-width:0}.tkl-nav__dropdown-title{font-size:.875rem;font-weight:600;color:var(--tkl-nav-text);letter-spacing:-.01em}.tkl-nav__dropdown-desc{font-size:.75rem;color:var(--tkl-nav-text-dim);line-height:1.4}
+    .tkl-nav__actions{display:flex;align-items:center;gap:1rem;flex-shrink:0}
+    .tkl-nav__cta{display:inline-flex;align-items:center;gap:8px;padding:.55rem 1.25rem;background:var(--tkl-cta-bg);color:#fff;font-size:.875rem;font-weight:700;font-family:var(--tkl-nav-font);text-decoration:none;border-radius:10px;border:none;cursor:pointer;white-space:nowrap;letter-spacing:.02em;position:relative;overflow:hidden;transition:box-shadow var(--tkl-t),transform var(--tkl-t);box-shadow:var(--tkl-cta-shadow);animation:tkl-cta-pulse 3s ease-in-out infinite}
+    .tkl-nav__cta::before{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);transform:skewX(-15deg);transition:left .5s ease}.tkl-nav__cta:hover::before{left:160%}
+    .tkl-nav__cta:hover{box-shadow:0 0 40px rgba(124,106,247,.65),0 0 80px rgba(56,189,248,.25);transform:translateY(-1px);animation:none}.tkl-nav__cta:active{transform:translateY(0)}
+    .tkl-nav__cta-arrow{width:14px;height:14px;transition:transform var(--tkl-t);flex-shrink:0}.tkl-nav__cta:hover .tkl-nav__cta-arrow{transform:translateX(3px)}
+    .tkl-nav__hamburger{display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:40px;height:40px;padding:0;background:transparent;border:1px solid rgba(255,255,255,.1);border-radius:9px;cursor:pointer;transition:background var(--tkl-t),border-color var(--tkl-t);flex-shrink:0}.tkl-nav__hamburger:hover{background:rgba(255,255,255,.05);border-color:rgba(124,106,247,.4)}
+    .tkl-nav__hamburger-line{display:block;width:18px;height:1.5px;background:var(--tkl-nav-text);border-radius:2px;transition:transform var(--tkl-t),opacity var(--tkl-t),width var(--tkl-t)}
+    .tkl-nav__hamburger[aria-expanded="true"] .tkl-nav__hamburger-line:nth-child(1){transform:translateY(6.5px) rotate(45deg)}.tkl-nav__hamburger[aria-expanded="true"] .tkl-nav__hamburger-line:nth-child(2){opacity:0;width:0}.tkl-nav__hamburger[aria-expanded="true"] .tkl-nav__hamburger-line:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+    @media(max-width:768px){.tkl-nav__hamburger{display:flex}.tkl-nav__menu{position:fixed;top:var(--tkl-nav-height);left:0;right:0;bottom:0;background:rgba(7,7,14,.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid var(--tkl-nav-border);transform:translateY(-10px);opacity:0;visibility:hidden;pointer-events:none;transition:opacity var(--tkl-ts),transform var(--tkl-ts),visibility 0s linear .38s;overflow-y:auto;padding:1.5rem 1.25rem 2rem;justify-content:flex-start}.tkl-nav__menu.is-open{transform:translateY(0);opacity:1;visibility:visible;pointer-events:auto;transition:opacity var(--tkl-ts),transform var(--tkl-ts),visibility 0s linear 0s}.tkl-nav__list{flex-direction:column;align-items:stretch;gap:.375rem;width:100%}.tkl-nav__item{width:100%}.tkl-nav__link{width:100%;padding:.875rem 1rem;font-size:1rem;border-radius:12px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05);justify-content:space-between}.tkl-nav__link:hover,.tkl-nav__link[aria-expanded="true"]{background:rgba(124,106,247,.08);border-color:rgba(124,106,247,.2)}.tkl-nav__dropdown{position:static;left:auto;top:auto;transform:none!important;width:100%;min-width:0;max-width:100%;box-sizing:border-box;visibility:visible;opacity:1;pointer-events:auto;padding:0;max-height:0;overflow:hidden;transition:max-height var(--tkl-ts)}.tkl-nav__dropdown::before{display:none}.tkl-nav__dropdown.is-open{max-height:500px;padding-top:.375rem;transform:none!important}.tkl-nav__item--dropdown:hover>.tkl-nav__dropdown{max-height:0;opacity:0;overflow:hidden}.tkl-nav__item--dropdown:hover>.tkl-nav__dropdown.is-open{max-height:500px;opacity:1}.tkl-nav__dropdown-inner{border-radius:12px;margin-top:.25rem;width:100%;box-sizing:border-box;overflow:hidden}.tkl-nav__dropdown-item{width:100%;box-sizing:border-box;min-width:0}.tkl-nav__dropdown-item:hover{transform:none}.tkl-nav__dropdown-info{min-width:0;overflow:hidden}.tkl-nav__dropdown-title,.tkl-nav__dropdown-desc{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}}
+    @media(max-width:1024px) and (min-width:769px){.tkl-nav__inner{padding:0 1.5rem;gap:1rem}.tkl-nav__link{padding:.5rem .625rem;font-size:.82rem}.tkl-nav__cta{padding:.5rem 1rem;font-size:.82rem}}
+    @keyframes tkl-fade-in{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes tkl-cta-pulse{0%,100%{box-shadow:0 0 28px rgba(124,106,247,.45)}50%{box-shadow:0 0 42px rgba(124,106,247,.7),0 0 70px rgba(56,189,248,.2)}}
+    .tkl-nav__item--dropdown:hover .tkl-nav__dropdown-item,.tkl-nav__dropdown.is-open .tkl-nav__dropdown-item{animation:tkl-fade-in .25s ease both}
+    .tkl-nav__item--dropdown:hover .tkl-nav__dropdown-item:nth-child(2),.tkl-nav__dropdown.is-open .tkl-nav__dropdown-item:nth-child(2){animation-delay:.04s}
+    .tkl-nav__item--dropdown:hover .tkl-nav__dropdown-item:nth-child(3),.tkl-nav__dropdown.is-open .tkl-nav__dropdown-item:nth-child(3){animation-delay:.08s}
+  </style>
+  <header class="tkl-nav">
+    <div class="tkl-nav__backdrop" aria-hidden="true"></div>
+    <div class="tkl-nav__inner">
+      <a href="https://tiklabari.com" class="tkl-nav__logo" aria-label="Tiklabari Anasayfa">
+        <svg class="tkl-nav__logo-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="8" y="2" width="16" height="28" rx="8" stroke="url(#tkl-lg-s)" stroke-width="2"/>
+          <line x1="16" y1="2" x2="16" y2="14" stroke="url(#tkl-lg-s)" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="16" cy="18" r="2.5" fill="url(#tkl-lg-s)"/>
+          <defs><linearGradient id="tkl-lg-s" x1="8" y1="2" x2="24" y2="30" gradientUnits="userSpaceOnUse"><stop stop-color="#a78bfa"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs>
+        </svg>
+        <span class="tkl-nav__logo-text">Tiklabari</span>
+      </a>
+      <nav class="tkl-nav__menu" id="tkl-main-nav-s" aria-label="Ana Navigasyon">
+        <ul class="tkl-nav__list" role="list">
+          <li class="tkl-nav__item tkl-nav__item--dropdown">
+            <button class="tkl-nav__link tkl-nav__link--dropdown" aria-haspopup="true" aria-expanded="false" aria-controls="tkl-dd-mouse-s" id="tkl-btn-mouse-s">
+              <span class="tkl-nav__link-icon">🖱️</span>Mouse Tools
+              <svg class="tkl-nav__chevron" viewBox="0 0 12 8" fill="none"><path d="M1 1L6 7L11 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="tkl-nav__dropdown" id="tkl-dd-mouse-s">
+              <div class="tkl-nav__dropdown-inner">
+                <p class="tkl-nav__dropdown-label">Mouse Test Araçları</p>
+                <a href="/clicktest/" class="tkl-nav__dropdown-item"><span class="tkl-nav__dropdown-icon">🖱️</span><span class="tkl-nav__dropdown-info"><strong class="tkl-nav__dropdown-title">Tık Testi</strong><span class="tkl-nav__dropdown-desc">Tıklama hızı ve çift tık doğruluğu</span></span></a>
+                <a href="/mouseoptictest/" class="tkl-nav__dropdown-item"><span class="tkl-nav__dropdown-icon">⊹</span><span class="tkl-nav__dropdown-info"><strong class="tkl-nav__dropdown-title">İmleç Testi</strong><span class="tkl-nav__dropdown-desc">Sensör kararlılığı ve drift analizi</span></span></a>
+                <a href="/scrolltest/" class="tkl-nav__dropdown-item"><span class="tkl-nav__dropdown-icon">🔄</span><span class="tkl-nav__dropdown-info"><strong class="tkl-nav__dropdown-title">Tekerlek Testi</strong><span class="tkl-nav__dropdown-desc">Scroll gecikmesi ve jitter kontrolü</span></span></a>
+              </div>
+            </div>
+          </li>
+          <li class="tkl-nav__item tkl-nav__item--dropdown">
+            <button class="tkl-nav__link tkl-nav__link--dropdown" aria-haspopup="true" aria-expanded="false" aria-controls="tkl-dd-kb-s" id="tkl-btn-kb-s">
+              <span class="tkl-nav__link-icon">⌨️</span>Keyboard Tools
+              <svg class="tkl-nav__chevron" viewBox="0 0 12 8" fill="none"><path d="M1 1L6 7L11 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="tkl-nav__dropdown" id="tkl-dd-kb-s">
+              <div class="tkl-nav__dropdown-inner">
+                <p class="tkl-nav__dropdown-label">Klavye Test Araçları</p>
+                <a href="#" class="tkl-nav__dropdown-item"><span class="tkl-nav__dropdown-icon">⚡</span><span class="tkl-nav__dropdown-info"><strong class="tkl-nav__dropdown-title">Klavye Hız Testi</strong><span class="tkl-nav__dropdown-desc">Tuş vuruş hızı ve gecikme ölçümü</span></span></a>
+                <a href="#" class="tkl-nav__dropdown-item"><span class="tkl-nav__dropdown-icon">🚀</span><span class="tkl-nav__dropdown-info"><strong class="tkl-nav__dropdown-title">Boşluk Basma Testi</strong><span class="tkl-nav__dropdown-desc">Spacebar tepki süresi analizi</span></span></a>
+              </div>
+            </div>
+          </li>
+          <li class="tkl-nav__item tkl-nav__item--dropdown">
+            <button class="tkl-nav__link tkl-nav__link--dropdown" aria-haspopup="true" aria-expanded="false" aria-controls="tkl-dd-pc-s" id="tkl-btn-pc-s">
+              <span class="tkl-nav__link-icon">🖥️</span>PC Tools
+              <svg class="tkl-nav__chevron" viewBox="0 0 12 8" fill="none"><path d="M1 1L6 7L11 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="tkl-nav__dropdown" id="tkl-dd-pc-s">
+              <div class="tkl-nav__dropdown-inner">
+                <p class="tkl-nav__dropdown-label">Bilgisayar Test Araçları</p>
+                <a href="#" class="tkl-nav__dropdown-item"><span class="tkl-nav__dropdown-icon">⚡</span><span class="tkl-nav__dropdown-info"><strong class="tkl-nav__dropdown-title">Klavye Hız Testi</strong><span class="tkl-nav__dropdown-desc">Tuş vuruş hızı ve gecikme ölçümü</span></span></a>
+                <a href="#" class="tkl-nav__dropdown-item"><span class="tkl-nav__dropdown-icon">🚀</span><span class="tkl-nav__dropdown-info"><strong class="tkl-nav__dropdown-title">Boşluk Basma Testi</strong><span class="tkl-nav__dropdown-desc">Spacebar tepki süresi analizi</span></span></a>
+              </div>
+            </div>
+          </li>
+          <li class="tkl-nav__item">
+            <a href="https://tiklabari.com/pages/blog" class="tkl-nav__link" target="_blank" rel="noopener noreferrer">
+              <span class="tkl-nav__link-icon">✍️</span>CEO Tools
+              <svg class="tkl-nav__external-icon" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H6M10 2V6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="tkl-nav__actions">
+        <a href="https://tiklabari.com/pages/contact" class="tkl-nav__cta" target="_blank" rel="noopener noreferrer">
+          <span class="tkl-nav__cta-text">Contact</span>
+          <svg class="tkl-nav__cta-arrow" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <button class="tkl-nav__hamburger" id="tkl-hamburger-s" aria-label="Menüyü aç/kapat" aria-expanded="false" aria-controls="tkl-main-nav-s">
+          <span class="tkl-nav__hamburger-line"></span>
+          <span class="tkl-nav__hamburger-line"></span>
+          <span class="tkl-nav__hamburger-line"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+  <script>
+  (function(){var nav=document.querySelector('.tkl-nav'),hamburger=document.getElementById('tkl-hamburger-s'),menu=document.getElementById('tkl-main-nav-s'),dropItems=[].slice.call(document.querySelectorAll('.tkl-nav__item--dropdown'));if(!nav)return;function onScroll(){nav.classList.toggle('is-scrolled',window.scrollY>10)}window.addEventListener('scroll',onScroll,{passive:true});onScroll();function closeDD(item){var btn=item.querySelector('.tkl-nav__link--dropdown'),panel=item.querySelector('.tkl-nav__dropdown');if(btn)btn.setAttribute('aria-expanded','false');if(panel)panel.classList.remove('is-open')}function openDD(item){var btn=item.querySelector('.tkl-nav__link--dropdown'),panel=item.querySelector('.tkl-nav__dropdown');if(btn)btn.setAttribute('aria-expanded','true');if(panel)panel.classList.add('is-open')}function closeAll(){dropItems.forEach(closeDD)}function toggleDD(item){var open=item.querySelector('.tkl-nav__dropdown.is-open');closeAll();if(!open)openDD(item)}function isMobile(){return window.innerWidth<=768}function closeMobile(){menu&&menu.classList.remove('is-open');hamburger&&hamburger.setAttribute('aria-expanded','false');closeAll()}if(hamburger){hamburger.addEventListener('click',function(){var open=hamburger.getAttribute('aria-expanded')==='true';if(open){closeMobile();}else{menu&&menu.classList.add('is-open');hamburger.setAttribute('aria-expanded','true');}})}dropItems.forEach(function(item){var btn=item.querySelector('.tkl-nav__link--dropdown');item.addEventListener('mouseenter',function(){if(!isMobile()&&btn)btn.setAttribute('aria-expanded','true')});item.addEventListener('mouseleave',function(){if(!isMobile()&&btn)btn.setAttribute('aria-expanded','false')});if(btn){btn.addEventListener('click',function(e){if(isMobile()){e.preventDefault();toggleDD(item);}else{toggleDD(item);}})}});document.addEventListener('click',function(e){if(nav.contains(e.target))return;closeAll();closeMobile()});document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeAll();closeMobile();if(hamburger)hamburger.focus()}});var rt;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){if(!isMobile()){closeMobile();closeAll()}},150)})})();
+  </script>
+  <!-- ═══ /TIKLABARI NAVBAR ═══ -->
+
+  <!-- Grid background -->
+  <div class="grid-bg" aria-hidden="true"></div>
+  <div class="grid-bg-glow" aria-hidden="true"></div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-left">
+      <div class="logo-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <rect x="3" y="2" width="18" height="20" rx="9" stroke="currentColor" stroke-width="1.5" />
+          <line x1="12" y1="7" x2="12" y2="11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+          <circle cx="12" cy="6" r="1" fill="currentColor" opacity="0.5" />
+        </svg>
+      </div>
+      <h1>Tıklabari Wheel Tester</h1>
+      <span class="version-badge">v1.0</span>
+    </div>
+    <div class="header-right">
+      <div class="status-indicator" id="statusIndicator">
+        <span class="status-dot"></span>
+        <span class="status-text">Bekleniyor</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Layout -->
+  <main class="main-layout">
+
+    <!-- Left Panel — Stats -->
+    <aside class="panel panel-stats glass-panel" id="panelStats">
+      <div class="panel-header">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M2 14V6l3-4h6l3 4v8H2z" stroke="currentColor" stroke-width="1.2" />
+          <path d="M5 14V9h6v5" stroke="currentColor" stroke-width="1.2" />
+        </svg>
+        <h2>Canlı Veriler</h2>
+      </div>
+
+      <div class="stat-grid">
+        <div class="stat-card" id="statDeltaY">
+          <span class="stat-label">Delta Y</span>
+          <span class="stat-value" id="valDeltaY">0</span>
+        </div>
+        <div class="stat-card" id="statDirection">
+          <span class="stat-label">Yön</span>
+          <span class="stat-value" id="valDirection">—</span>
+        </div>
+        <div class="stat-card" id="statSpeed">
+          <span class="stat-label">Hız</span>
+          <span class="stat-value" id="valSpeed">0</span>
+          <span class="stat-unit">px/s</span>
+        </div>
+        <div class="stat-card" id="statTotal">
+          <span class="stat-label">Toplam Olay</span>
+          <span class="stat-value" id="valTotal">0</span>
+        </div>
+        <div class="stat-card stat-card-wide" id="statErrors">
+          <span class="stat-label">Yön Hataları</span>
+          <span class="stat-value stat-value-error" id="valErrors">0</span>
+        </div>
+      </div>
+
+      <div class="panel-section">
+        <h3 class="section-title">Yön Geçmişi</h3>
+        <div class="direction-timeline" id="directionTimeline"></div>
+      </div>
+    </aside>
+
+    <!-- Center — Scroll Area -->
+    <section class="scroll-zone" id="scrollZone">
+      <div class="scroll-zone-label">Kaydırmak için fare tekerleğini çevirin</div>
+
+      <!-- Vertical scroll track -->
+      <div class="scroll-track" id="scrollTrack">
+        <div class="scroll-track-fill" id="scrollTrackFill"></div>
+        <div class="scroll-thumb" id="scrollThumb"></div>
+      </div>
+
+      <!-- Ghost trail canvas -->
+      <canvas id="ghostCanvas"></canvas>
+
+      <!-- Direction arrow indicator -->
+      <div class="direction-arrow" id="directionArrow">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <path d="M16 6L16 26" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          <path d="M10 12L16 6L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+      </div>
+
+      <!-- Error flash overlay -->
+      <div class="error-flash" id="errorFlash"></div>
+
+      <!-- Intensity meter -->
+      <div class="intensity-meter" id="intensityMeter">
+        <div class="intensity-bar" id="intensityBar"></div>
+      </div>
+
+      <!-- Replay progress bar -->
+      <div class="replay-bar" id="replayBar">
+        <div class="replay-bar-fill" id="replayBarFill"></div>
+        <span class="replay-bar-text" id="replayBarText"></span>
+      </div>
+    </section>
+
+    <!-- Right Panel — Controls & Log -->
+    <aside class="panel panel-controls glass-panel" id="panelControls">
+      <div class="panel-header">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.2" />
+          <path d="M6 5.5l5 2.5-5 2.5V5.5z" fill="currentColor" />
+        </svg>
+        <h2>Kontroller</h2>
+      </div>
+
+      <div class="controls-group">
+        <button class="btn btn-primary" id="btnRecord">
+          <span class="btn-icon record-icon"></span>
+          Kayda Başla
+        </button>
+        <button class="btn btn-danger" id="btnStop" disabled>
+          <span class="btn-icon stop-icon"></span>
+          Kaydı Durdur
+        </button>
+        <button class="btn btn-secondary" id="btnReplay">
+          <span class="btn-icon play-icon"></span>
+          Son Kaydı İzle
+        </button>
+        <button class="btn btn-ghost" id="btnClear">
+          <span class="btn-icon clear-icon"></span>
+          Temizle
+        </button>
+      </div>
+
+      <div class="panel-section">
+        <div class="section-header">
+          <h3 class="section-title">Kayıt Durumu</h3>
+          <span class="record-timer" id="recordTimer">00:00</span>
+        </div>
+        <div class="record-info">
+          <div class="record-info-row">
+            <span>Kayıtlı Olay</span>
+            <span id="recordedEvents">0</span>
+          </div>
+          <div class="record-info-row">
+            <span>Veri Boyutu</span>
+            <span id="dataSize">0 B</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-section">
+        <div class="section-header">
+          <h3 class="section-title">Hata Günlüğü</h3>
+          <span class="error-count-badge" id="errorCountBadge">0</span>
+        </div>
+        <div class="error-log" id="errorLog">
+          <div class="error-log-empty">Henüz hata tespit edilmedi</div>
+        </div>
+      </div>
+    </aside>
+
+  </main>
+
+  <!-- Blog Section for SEO -->
+  <section class="blog-section">
+    <div class="blog-header">
+      <h2>Mouse Wheel Test & Bilgi Merkezi</h2>
+      <p>Fare tekerleğinizin sağlığını koruyun, performansınızı artırın ve donanımızın detaylarını öğrenin.</p>
+    </div>
+
+    <div class="blog-grid">
+      <!-- Article 1 -->
+      <article class="blog-card">
+        <div class="icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="5" y="2" width="14" height="20" rx="7" />
+            <path d="M12 6v4" />
+          </svg>
+        </div>
+        <h3>Fare Tekerleği Nedir ve Yönleri Nelerdir?</h3>
+        <p>Fare tekerleği (Scroll Wheel), modern bilgisayar kullanımının vazgeçilmez bir parçasıdır. Optik veya mekanik
+          bir enkoder kullanarak dikey (ve bazen yatay) hareketi dijital verilere dönüştürür. 'Yukarı' ve 'Aşağı' olmak
+          üzere iki ana yönde çalışır; ancak bu hareketlerin yazılımsal karşılıkları (deltaY) farenin donanım kalitesine
+          göre farklılık gösterebilir. Sayfa kaydırma, yakınlaştırma ve oyun içi kontrollerde kritik rol oynar.</p>
+
+
+      </article>
+
+      <!-- Article 2 -->
+      <article class="blog-card">
+        <div class="icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+          </svg>
+        </div>
+        <h3>Bu Test Ne İşe Yarar? (Jitter ve Ghosting Tespiti)</h3>
+        <p>Tıklabari Wheel Tester, farenizin donanımsal hatalarını saniyeler içinde tespit etmenizi sağlar. Özellikle
+          'Ghosting' (hayalet kaydırma) ve 'Jitter' (titreme) gibi sorunlar, bir yöne kaydırırken tekerleğin anlık
+          olarak zıt yöne sinyal göndermesiyle oluşur. Test aracımız bu milisaniyelik hataları yakalar ve kırmızı
+          uyarılar ile sizi bilgilendirir, böylece farenizin gerçekten tamir edilmeye veya değişime ihtiyacı olup
+          olmadığını anlarsınız.</p>
+
+
+      </article>
+
+      <!-- Article 3 -->
+      <article class="blog-card">
+        <div class="icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path
+              d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+          </svg>
+        </div>
+        <h3>Bozuk Fare Tekerleği Nasıl Tamir Edilir?</h3>
+        <p>Eğer testimiz sırasında çok fazla 'Yön Hatası' alıyorsanız, farenizin içindeki tozlanmış enkoderi alkol
+          yardımıyla temizlemek veya enkazı (varsa) basınçlı hava ile uzaklaştırmak genellikle sorunu çözer.
+          Daha ciddi
+          durumlarda ise tekerlek parçasının değiştirilmesi gerekebilir. Bunun için bir ustaya göstermeniz veya kendiniz
+          yapabiliyorsanız lehim ve havya ile yenisi ile tekerlek parçasını değiştirebilirsiniz.
+          - Tıklabari, donanım bilinci
+          oluşturarak kullanıcıların daha uzun ömürlü cihaz kullanmasına katkı sağlar.</p>
+
+
+      </article>
+    </div>
+  </section>
+
+  </div>
+
+  <footer class="footer-dashboard glass-panel" style="margin: 40px auto; padding: 40px; max-width: 1200px; width: 95%;">
+    <div class="footer-col" style="min-width: 140px;">
+      <h4
+        style="font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; color: #fff; margin-bottom: 24px; font-weight: 800;">
+        Hızlı Bağlantılar</h4>
+      <div class="footer-links">
+        <a href="https://tiklabari.com" class="footer-link" target="_blank" rel="noopener noreferrer">Anasayfa</a>
+        <a href="https://tiklabari.com/pages/contact.html" class="footer-link" target="_blank"
+          rel="noopener noreferrer">İletişim</a>
+        <a href="https://tiklabari.com/pages/blog.html" class="footer-link">Blog</a>
+      </div>
+    </div>
+    <div class="footer-col" style="min-width: 140px;">
+      <h4
+        style="font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; color: #fff; margin-bottom: 24px; font-weight: 800;">
+        Rehberler</h4>
+      <div class="footer-links">
+        <a href="https://tiklabari.com/blog/iki-faktorlu-dogrulama/" class="footer-link">İki faktörlü doğrulama</a>
+        <a href="https://tiklabari.com/pc-tools/" class="footer-link">Fare testleri</a>
+        <a href="https://tiklabari.com/blog/" class="footer-link" target="_blank" rel="noopener noreferrer">Rehber</a>
+      </div>
+    </div>
+    <div class="footer-col" style="min-width: 140px;">
+      <h4
+        style="font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; color: #fff; margin-bottom: 24px; font-weight: 800;">
+        Mouse Araçları</h4>
+      <div class="footer-links">
+        <a href="../clicktest/" class="footer-link">Tık Testi</a>
+        <a href="../mouseoptictest/" class="footer-link">İmleç Testi</a>
+        <a href="../scrolltest/" class="footer-link">Tekerlek Testi</a>
+      </div>
+    </div>
+  </footer>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <span class="footer-logo">Tıklabari</span>
+      <p>&copy; 2024 Tüm hakları saklıdır. Modern Donanım Test Platformu.</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+
+</html>

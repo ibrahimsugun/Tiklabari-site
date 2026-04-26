@@ -1,0 +1,845 @@
+/*
+  ============================================================
+  TIKLABARI — Navigation Header Stilleri
+  Dosya: nav/navbar.css
+  ============================================================
+  
+  Tüm seçiciler "tkl-nav" BEM prefix'i ile başlar.
+  Bu sayede herhangi bir sayfaya import edildiğinde
+  mevcut CSS ile çakışma yaşanmaz (Scoped CSS).
+  
+  İçindekiler:
+  1. CSS Değişkenleri (Design Tokens)
+  2. Temel Nav Sarmalayıcı
+  3. İç Konteyner & Grid
+  4. Logo
+  5. Navigasyon Listesi & Menü Öğeleri
+  6. Dropdown Panneli (hover gap fix dahil)
+  7. CEO Tools Dış Link İkonu
+  8. Contact CTA Butonu
+  9. Hamburger (Mobil)
+  10. Medya Sorguları (Responsive)
+  11. Animasyonlar & Keyframes
+  ============================================================
+*/
+
+
+/* ══════════════════════════════════════════════
+   1. CSS DEĞİŞKENLERİ (Design Tokens)
+   Tüm renkler ve değerler merkezi olarak yönetilir.
+   Sayfa kendi :root değişkenlerini zaten kullanıyorsa
+   buradaki değişkenler çakışmaz (tkl- prefix'li).
+══════════════════════════════════════════════ */
+:root {
+  --tkl-nav-height: 68px;
+  --tkl-nav-bg: rgba(7, 7, 14, 0.82);
+  --tkl-nav-border: rgba(255, 255, 255, 0.07);
+  --tkl-nav-blur: 24px;
+
+  /* Tipografi */
+  --tkl-nav-font: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  --tkl-nav-font-size: 0.9rem;
+
+  /* Renkler */
+  --tkl-nav-text: rgba(240, 240, 248, 0.92);
+  --tkl-nav-text-dim: rgba(160, 160, 185, 0.75);
+  --tkl-nav-accent: #7c6af7;       /* Ana vurgu: mor-violet */
+  --tkl-nav-accent-2: #38bdf8;     /* İkincil: sky blue */
+  --tkl-nav-accent-3: #a78bfa;     /* Üçüncül: soft purple */
+
+  /* Dropdown */
+  --tkl-dropdown-bg: rgba(10, 10, 20, 0.97);
+  --tkl-dropdown-border: rgba(124, 106, 247, 0.18);
+  --tkl-dropdown-shadow: 0 24px 60px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(124, 106, 247, 0.12);
+  --tkl-dropdown-item-hover: rgba(124, 106, 247, 0.08);
+  --tkl-dropdown-item-border: rgba(255, 255, 255, 0.04);
+  --tkl-dropdown-radius: 16px;
+
+  /* CTA Butonu */
+  --tkl-cta-bg: linear-gradient(135deg, #7c6af7 0%, #38bdf8 100%);
+  --tkl-cta-shadow: 0 0 28px rgba(124, 106, 247, 0.45);
+
+  /* Geçişler */
+  --tkl-transition: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+  --tkl-transition-slow: 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+/* ══════════════════════════════════════════════
+   2. TEMEL NAV SARMALAYICI
+   position: sticky ile sayfanın üstünde sabit kalır.
+   z-index: 1000 — diğer içeriklerin üzerinde durur.
+══════════════════════════════════════════════ */
+.tkl-nav {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: var(--tkl-nav-height);
+  z-index: 1000;
+  font-family: var(--tkl-nav-font);
+  /* Backdrop blur için bu elementin taşıyıcı olması gerekir */
+  isolation: isolate;
+}
+
+/* Arka plan blur ve renk katmanı */
+.tkl-nav__backdrop {
+  position: absolute;
+  inset: 0;
+  background: var(--tkl-nav-bg);
+  backdrop-filter: blur(var(--tkl-nav-blur));
+  -webkit-backdrop-filter: blur(var(--tkl-nav-blur));
+  border-bottom: 1px solid var(--tkl-nav-border);
+  /* Gradient accent çizgisi (üst border efekti) */
+  box-shadow:
+    0 1px 0 0 var(--tkl-nav-border),
+    0 4px 32px rgba(0, 0, 0, 0.25);
+  z-index: -1;
+  /* Scroll sonrası beliren ince gradient çizgi */
+  transition: box-shadow var(--tkl-transition);
+}
+
+/* Sayfa scroll edildiğinde nav daha belirgin hale gelir */
+.tkl-nav.is-scrolled .tkl-nav__backdrop {
+  background: rgba(7, 7, 14, 0.95);
+  box-shadow:
+    0 1px 0 0 rgba(124, 106, 247, 0.25),
+    0 8px 40px rgba(0, 0, 0, 0.5);
+}
+
+
+/* ══════════════════════════════════════════════
+   3. İÇ KONTEYNER
+   Max genişlik ve yatay ortalama + flex layout
+══════════════════════════════════════════════ */
+.tkl-nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  gap: 2rem;
+}
+
+
+/* ══════════════════════════════════════════════
+   4. LOGO
+══════════════════════════════════════════════ */
+.tkl-nav__logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  flex-shrink: 0;
+  /* Logo hover efekti */
+  transition: opacity var(--tkl-transition);
+}
+
+.tkl-nav__logo:hover {
+  opacity: 0.85;
+}
+
+/* SVG Mouse ikonu */
+.tkl-nav__logo-icon {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  /* Hafif parlama efekti */
+  filter: drop-shadow(0 0 8px rgba(124, 106, 247, 0.5));
+  transition: filter var(--tkl-transition);
+}
+
+.tkl-nav__logo:hover .tkl-nav__logo-icon {
+  filter: drop-shadow(0 0 14px rgba(56, 189, 248, 0.7));
+}
+
+/* Logo yazısı */
+.tkl-nav__logo-text {
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: -0.4px;
+  /* Gradient metin */
+  background: linear-gradient(90deg, #ffffff 0%, #a78bfa 60%, #38bdf8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  /* Inter veya Outfit kullanılabilir */
+  font-family: 'Outfit', 'Inter', sans-serif;
+}
+
+
+/* ══════════════════════════════════════════════
+   5. NAVİGASYON LİSTESİ & MENÜ ÖĞELERİ
+══════════════════════════════════════════════ */
+.tkl-nav__menu {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.tkl-nav__list {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Her menü öğesi */
+.tkl-nav__item {
+  position: relative; /* Dropdown'un referans noktası */
+}
+
+/* Temel link/buton stili */
+.tkl-nav__link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0.5rem 0.875rem;
+  font-size: var(--tkl-nav-font-size);
+  font-weight: 500;
+  color: var(--tkl-nav-text-dim);
+  text-decoration: none;
+  border-radius: 10px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    color var(--tkl-transition),
+    background var(--tkl-transition);
+  letter-spacing: 0.01em;
+  /* Buton sıfırlama */
+  font-family: var(--tkl-nav-font);
+  line-height: 1;
+  position: relative;
+}
+
+.tkl-nav__link:hover,
+.tkl-nav__item--dropdown:hover > .tkl-nav__link {
+  color: var(--tkl-nav-text);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Aktif/açık dropdown butonu */
+.tkl-nav__link[aria-expanded="true"] {
+  color: var(--tkl-nav-accent-3);
+  background: rgba(124, 106, 247, 0.08);
+}
+
+/* Link önündeki emoji ikonları */
+.tkl-nav__link-icon {
+  font-size: 0.85em;
+  line-height: 1;
+  display: inline-block;
+}
+
+/* Dropdown ok (chevron) ikonu */
+.tkl-nav__chevron {
+  width: 10px;
+  height: 10px;
+  margin-left: 2px;
+  transition: transform var(--tkl-transition);
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
+/* Dropdown açıkken ok döner */
+.tkl-nav__link[aria-expanded="true"] .tkl-nav__chevron {
+  transform: rotate(180deg);
+  opacity: 1;
+}
+
+/* CEO Tools dış link ok ikonu */
+.tkl-nav__external-icon {
+  width: 10px;
+  height: 10px;
+  margin-left: 2px;
+  opacity: 0.5;
+  flex-shrink: 0;
+  transition: opacity var(--tkl-transition), transform var(--tkl-transition);
+}
+
+.tkl-nav__link:hover .tkl-nav__external-icon {
+  opacity: 1;
+  transform: translate(2px, -2px);
+}
+
+
+/* ══════════════════════════════════════════════
+   6. DROPDOWN PANELİ
+   
+   ★ HOVER GAP FIX (Kapanma Hatası Çözümü):
+   
+   Problem: Mouse, nav linki ile dropdown arasındaki
+   boşluktan geçerken dropdown kapanıyor.
+   
+   Çözüm 1 — Padding Bridge:
+   .tkl-nav__dropdown üzerine padding-top ekle.
+   Bu padding görünmez ama mouse için geçiş alanı sağlar.
+   
+   Çözüm 2 — ::before Pseudo-element Bridge:
+   Dropdown'un ::before pseudo-elementiyle nav butonunun
+   alt kısmına kadar uzanan görünmez bir köprü oluşturulur.
+   
+   İkisi birlikte kullanılmaktadır (defense in depth).
+══════════════════════════════════════════════ */
+.tkl-nav__dropdown {
+  /* Başlangıçta gizli */
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+
+  /* Konum */
+  position: absolute;
+  top: 100%; /* Nav öğesinin hemen altına yerleş */
+  left: 50%;
+  transform: translateX(-50%) translateY(-8px);
+
+  /*
+    ★ HOVER GAP FIX — Padding Bridge:
+    8px padding-top ile nav barı ile dropdown arasında
+    görünmez bir köprü oluşturulur. Mouse bu alandan
+    geçerse dropdown açık kalır.
+  */
+  padding-top: 8px;
+
+  /* Minimum genişlik */
+  min-width: 300px;
+
+  /* Geçiş animasyonu */
+  transition:
+    opacity var(--tkl-transition),
+    transform var(--tkl-transition),
+    visibility 0s linear 0.22s; /* Kapanma gecikmesi */
+}
+
+/*
+  ★ HOVER GAP FIX — Invisible Bridge (::before):
+  Dropdown'un üst kenarından nav linkine uzanan
+  görünmez bir dikdörtgen alan. z-index yüksek tutulur
+  böylece mouse eventi buradan geçer ama görünmez.
+*/
+.tkl-nav__dropdown::before {
+  content: '';
+  position: absolute;
+  top: 0;       /* padding-top alanına denk gelir */
+  left: 0;
+  right: 0;
+  height: 8px;  /* padding-top ile aynı değer */
+  /* Görünmez — sadece mouse geçişini yakalar */
+  background: transparent;
+}
+
+/* Dropdown açıkken (hover veya JS ile) */
+.tkl-nav__item--dropdown:hover > .tkl-nav__dropdown,
+.tkl-nav__dropdown.is-open {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+  transition:
+    opacity var(--tkl-transition),
+    transform var(--tkl-transition),
+    visibility 0s linear 0s;
+}
+
+/* Dropdown iç kutu — asıl görünen panel */
+.tkl-nav__dropdown-inner {
+  background: var(--tkl-dropdown-bg);
+  border: 1px solid var(--tkl-dropdown-border);
+  border-radius: var(--tkl-dropdown-radius);
+  box-shadow: var(--tkl-dropdown-shadow);
+  padding: 0.75rem;
+  /* İnce animasyon */
+  overflow: hidden;
+  /* Soldan sağa gradient kenar */
+  position: relative;
+}
+
+/* Üst gradient şerit (dekoratif) */
+.tkl-nav__dropdown-inner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 1.5rem;
+  right: 1.5rem;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--tkl-nav-accent), var(--tkl-nav-accent-2), transparent);
+  opacity: 0.6;
+}
+
+/* Dropdown kategori etiketi */
+.tkl-nav__dropdown-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--tkl-nav-text-dim);
+  padding: 0.25rem 0.75rem 0.5rem;
+  margin-bottom: 0.25rem;
+  opacity: 0.7;
+}
+
+/* Dropdown her bir link öğesi */
+.tkl-nav__dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 0.75rem;
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--tkl-nav-text);
+  transition:
+    background var(--tkl-transition),
+    transform var(--tkl-transition);
+  border: 1px solid transparent;
+  margin-bottom: 0.15rem;
+}
+
+.tkl-nav__dropdown-item:last-child {
+  margin-bottom: 0;
+}
+
+.tkl-nav__dropdown-item:hover {
+  background: var(--tkl-dropdown-item-hover);
+  border-color: rgba(124, 106, 247, 0.15);
+  transform: translateX(4px);
+}
+
+/* Dropdown öğe ikonları */
+.tkl-nav__dropdown-icon {
+  font-size: 1.25rem;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 10px;
+  flex-shrink: 0;
+  transition: background var(--tkl-transition);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.tkl-nav__dropdown-item:hover .tkl-nav__dropdown-icon {
+  background: rgba(124, 106, 247, 0.12);
+  border-color: rgba(124, 106, 247, 0.2);
+}
+
+/* Dropdown öğe metin bloğu */
+.tkl-nav__dropdown-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.tkl-nav__dropdown-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--tkl-nav-text);
+  letter-spacing: -0.01em;
+}
+
+.tkl-nav__dropdown-desc {
+  font-size: 0.75rem;
+  color: var(--tkl-nav-text-dim);
+  line-height: 1.4;
+}
+
+
+/* ══════════════════════════════════════════════
+   7. CONTACT CTA BUTONU
+   Diğer nav öğelerinden görsel olarak ayrışır.
+   Gradient arka plan + parlayan shadow efekti.
+══════════════════════════════════════════════ */
+.tkl-nav__actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+
+.tkl-nav__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.55rem 1.25rem;
+  background: var(--tkl-cta-bg);
+  color: #ffffff;
+  font-size: 0.875rem;
+  font-weight: 700;
+  font-family: var(--tkl-nav-font);
+  text-decoration: none;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+  position: relative;
+  overflow: hidden;
+  transition:
+    box-shadow var(--tkl-transition),
+    transform var(--tkl-transition),
+    opacity var(--tkl-transition);
+  /* Parlama gölgesi */
+  box-shadow: var(--tkl-cta-shadow);
+}
+
+/* Shimmer efekti */
+.tkl-nav__cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transform: skewX(-15deg);
+  transition: left 0.5s ease;
+}
+
+.tkl-nav__cta:hover::before {
+  left: 160%;
+}
+
+.tkl-nav__cta:hover {
+  box-shadow:
+    0 0 40px rgba(124, 106, 247, 0.65),
+    0 0 80px rgba(56, 189, 248, 0.25);
+  transform: translateY(-1px);
+}
+
+.tkl-nav__cta:active {
+  transform: translateY(0);
+}
+
+/* CTA ok ikonu */
+.tkl-nav__cta-arrow {
+  width: 14px;
+  height: 14px;
+  transition: transform var(--tkl-transition);
+  flex-shrink: 0;
+}
+
+.tkl-nav__cta:hover .tkl-nav__cta-arrow {
+  transform: translateX(3px);
+}
+
+
+/* ══════════════════════════════════════════════
+   8. HAMBURGER BUTONU (Mobil)
+══════════════════════════════════════════════ */
+.tkl-nav__hamburger {
+  display: none; /* Masaüstünde gizli */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 9px;
+  cursor: pointer;
+  transition: background var(--tkl-transition), border-color var(--tkl-transition);
+  flex-shrink: 0;
+}
+
+.tkl-nav__hamburger:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(124, 106, 247, 0.4);
+}
+
+.tkl-nav__hamburger-line {
+  display: block;
+  width: 18px;
+  height: 1.5px;
+  background: var(--tkl-nav-text);
+  border-radius: 2px;
+  transition:
+    transform var(--tkl-transition),
+    opacity var(--tkl-transition),
+    width var(--tkl-transition);
+}
+
+/* Hamburger açık durumu (X animasyonu) */
+.tkl-nav__hamburger[aria-expanded="true"] .tkl-nav__hamburger-line:nth-child(1) {
+  transform: translateY(6.5px) rotate(45deg);
+}
+
+.tkl-nav__hamburger[aria-expanded="true"] .tkl-nav__hamburger-line:nth-child(2) {
+  opacity: 0;
+  width: 0;
+}
+
+.tkl-nav__hamburger[aria-expanded="true"] .tkl-nav__hamburger-line:nth-child(3) {
+  transform: translateY(-6.5px) rotate(-45deg);
+}
+
+
+/* ══════════════════════════════════════════════
+   9. MOBİL MENÜ (max-width: 768px)
+══════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  /* Hamburger görünür olur */
+  .tkl-nav__hamburger {
+    display: flex;
+  }
+
+  /* Ana nav menüsü collapse olur */
+  .tkl-nav__menu {
+    /* Mobilde sabitlenmiş panel */
+    position: fixed;
+    top: var(--tkl-nav-height);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(7, 7, 14, 0.97);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid var(--tkl-nav-border);
+
+    /* Gizli başlangıç */
+    transform: translateY(-10px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+      opacity var(--tkl-transition-slow),
+      transform var(--tkl-transition-slow),
+      visibility 0s linear 0.38s;
+
+    /* Scroll izin ver */
+    overflow-y: auto;
+    padding: 1.5rem 1.25rem 2rem;
+    justify-content: flex-start;
+  }
+
+  /* Menü açıkken */
+  .tkl-nav__menu.is-open {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition:
+      opacity var(--tkl-transition-slow),
+      transform var(--tkl-transition-slow),
+      visibility 0s linear 0s;
+  }
+
+  .tkl-nav__list {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.375rem;
+    width: 100%;
+  }
+
+  .tkl-nav__item {
+    width: 100%;
+  }
+
+  /* Mobil nav linkleri */
+  .tkl-nav__link {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    font-size: 1rem;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    justify-content: space-between;
+  }
+
+  .tkl-nav__link:hover,
+  .tkl-nav__link[aria-expanded="true"] {
+    background: rgba(124, 106, 247, 0.08);
+    border-color: rgba(124, 106, 247, 0.2);
+  }
+
+  /* Mobil dropdown: konum ve taşma sıfırlaması */
+  .tkl-nav__dropdown {
+    /* Masaüstü absolute konumunu tamamen sıfırla */
+    position: static;
+    left: auto;
+    top: auto;
+    transform: none !important;   /* translateX(-50%) kalıntısını engelle */
+    /* Genişliği parent'a kilitle */
+    width: 100%;
+    min-width: 0;                 /* 300px masaüstü değerini sıfırla */
+    max-width: 100%;
+    box-sizing: border-box;
+    /* Her zaman görünür (accordion max-height ile yönetilir) */
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    padding-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+    /* Accordion davranışı */
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--tkl-transition-slow);
+  }
+
+  /* Mobilde ::before bridge gizlenir */
+  .tkl-nav__dropdown::before {
+    display: none;
+  }
+
+  /* Dropdown açıkken (mobil) */
+  .tkl-nav__dropdown.is-open {
+    max-height: 500px;
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transform: none !important;
+    padding-top: 0.375rem;
+  }
+
+  /* Mobilde masaüstü hover tetikleyicisini devre dışı bırak */
+  .tkl-nav__item--dropdown:hover > .tkl-nav__dropdown {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+  }
+
+  .tkl-nav__item--dropdown:hover > .tkl-nav__dropdown.is-open {
+    max-height: 500px;
+    opacity: 1;
+  }
+
+  /* Dropdown iç kutu — mobil uyumu */
+  .tkl-nav__dropdown-inner {
+    border-radius: 12px;
+    margin-top: 0.25rem;
+    /* İçeriğin taşmasını engelle */
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  /* Mobilde öğe hover kayması devre dışı */
+  .tkl-nav__dropdown-item:hover {
+    transform: none;
+  }
+
+  /* Dropdown öğeleri tam genişlik ve kırpmasız */
+  .tkl-nav__dropdown-item {
+    width: 100%;
+    box-sizing: border-box;
+    min-width: 0;
+  }
+
+  /* Info metni taşmasın */
+  .tkl-nav__dropdown-info {
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .tkl-nav__dropdown-title,
+  .tkl-nav__dropdown-desc {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+/* ══════════════════════════════════════════════
+   10. TABLET UYUMU (768px - 1024px)
+══════════════════════════════════════════════ */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .tkl-nav__inner {
+    padding: 0 1.5rem;
+    gap: 1rem;
+  }
+
+  .tkl-nav__link {
+    padding: 0.5rem 0.625rem;
+    font-size: 0.82rem;
+  }
+
+  .tkl-nav__cta {
+    padding: 0.5rem 1rem;
+    font-size: 0.82rem;
+  }
+}
+
+
+/* ══════════════════════════════════════════════
+   11. KİÇİK EKRANLAR (max-width: 400px)
+══════════════════════════════════════════════ */
+@media (max-width: 400px) {
+  .tkl-nav__inner {
+    padding: 0 1rem;
+  }
+
+  .tkl-nav__logo-text {
+    font-size: 1rem;
+  }
+
+  .tkl-nav__cta-text {
+    /* Çok küçük ekranlarda metin gizlenebilir */
+    /* display: none; */
+  }
+}
+
+
+/* ══════════════════════════════════════════════
+   12. ANİMASYONLAR & KEYFRAMES
+══════════════════════════════════════════════ */
+
+/* Dropdown öğelerinin staggered giriş animasyonu */
+@keyframes tkl-fade-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Dropdown açıldığında iç öğelere animasyon */
+.tkl-nav__item--dropdown:hover .tkl-nav__dropdown-item,
+.tkl-nav__dropdown.is-open .tkl-nav__dropdown-item {
+  animation: tkl-fade-slide-in 0.25s ease both;
+}
+
+.tkl-nav__item--dropdown:hover .tkl-nav__dropdown-item:nth-child(2),
+.tkl-nav__dropdown.is-open .tkl-nav__dropdown-item:nth-child(2) {
+  animation-delay: 0.04s;
+}
+
+.tkl-nav__item--dropdown:hover .tkl-nav__dropdown-item:nth-child(3),
+.tkl-nav__dropdown.is-open .tkl-nav__dropdown-item:nth-child(3) {
+  animation-delay: 0.08s;
+}
+
+/* CTA buton pulse efekti (arka plan parlama) */
+@keyframes tkl-cta-pulse {
+  0%, 100% {
+    box-shadow: 0 0 28px rgba(124, 106, 247, 0.45);
+  }
+  50% {
+    box-shadow: 0 0 42px rgba(124, 106, 247, 0.7), 0 0 70px rgba(56, 189, 248, 0.2);
+  }
+}
+
+.tkl-nav__cta {
+  animation: tkl-cta-pulse 3s ease-in-out infinite;
+}
+
+.tkl-nav__cta:hover {
+  animation: none; /* Hover'da animasyonu durdur, static glow göster */
+}

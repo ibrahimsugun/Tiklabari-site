@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Tıklabari — Profesyonel Mouse Donanım Test Merkezi. Click, Scroll ve Optik sensör testleri tek bir dashboard'da.">
+    <title>Tıklabari — Mouse Health Check Dashboard</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;600;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-dark: #050508;
+            --sidebar-bg: rgba(10, 10, 15, 0.8);
+            --accent-primary: #6c5ce7;
+            --accent-secondary: #00cec9;
+            --accent-tertiary: #e84393;
+            --text-main: #f0f0f5;
+            --text-dim: #8888a0;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+        }
+
+        /* --- Background Animation --- */
+        .bg-glow {
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            filter: blur(120px);
+            z-index: -1;
+            opacity: 0.15;
+            pointer-events: none;
+            animation: pulse 10s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1) translate(0, 0);
+            }
+
+            100% {
+                transform: scale(1.2) translate(50px, 50px);
+            }
+        }
+
+        /* --- Sidebar --- */
+        .sidebar {
+            width: 280px;
+            background: var(--sidebar-bg);
+            backdrop-filter: blur(30px);
+            border-right: 1px solid var(--glass-border);
+            display: flex;
+            flex-direction: column;
+            padding: 2rem 1.5rem;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 3.5rem;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 16px rgba(108, 92, 231, 0.3);
+        }
+
+        .logo-text {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(to right, #fff, var(--text-dim));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-dim);
+            margin-bottom: 1.25rem;
+            font-weight: 700;
+        }
+
+        .nav-items {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 1rem 1.25rem;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            text-decoration: none;
+            color: var(--text-dim);
+            border: 1px solid transparent;
+        }
+
+        .nav-item:hover {
+            background: var(--glass-bg);
+            color: var(--text-main);
+            transform: translateX(5px);
+        }
+
+        .nav-item.active {
+            background: rgba(108, 92, 231, 0.1);
+            border-color: rgba(108, 92, 231, 0.3);
+            color: var(--text-main);
+        }
+
+        .nav-item.active .nav-icon {
+            color: var(--accent-primary);
+        }
+
+        .nav-icon {
+            font-size: 1.25rem;
+            transition: var(--transition-smooth);
+        }
+
+        .nav-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .nav-desc {
+            font-size: 0.75rem;
+            opacity: 0.6;
+        }
+
+        .sidebar-footer {
+            margin-top: auto;
+            padding-top: 2rem;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .status-pill {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0, 206, 201, 0.1);
+            color: #00cec9;
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            background: #00cec9;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #00cec9;
+            animation: breathe 2s infinite;
+        }
+
+        @keyframes breathe {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.5;
+                transform: scale(1.2);
+            }
+        }
+
+        /* --- Main Content --- */
+        .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .top-bar {
+            padding: 1.5rem 2.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--glass-border);
+            background: rgba(5, 5, 8, 0.5);
+            backdrop-filter: blur(10px);
+            z-index: 10;
+        }
+
+        .view-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .view-container {
+            flex: 1;
+            position: relative;
+            background: #000;
+            min-height: 500px;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+
+        iframe.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* --- Footer --- */
+        .footer-dashboard {
+            padding: 3rem 2rem;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            border-top: 1px solid rgba(108, 92, 231, 0.5);
+            background: #0a0a0f;
+            position: relative;
+        }
+
+        .footer-dashboard::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
+            opacity: 0.5;
+        }
+
+        .footer-col h4 {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #fff;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .footer-link {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition-smooth);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            opacity: 0.85;
+            width: fit-content;
+            /* Sadece yazı alanını tıklanabilir yapar */
+        }
+
+        .footer-link:hover {
+            color: var(--accent-secondary);
+            transform: translateX(6px);
+            opacity: 1;
+        }
+
+        .footer-link::before {
+            content: '›';
+            font-size: 1rem;
+            color: var(--accent-primary);
+            transition: var(--transition-smooth);
+        }
+
+        /* --- Custom Scrollbar --- */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--glass-border);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-dim);
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 900px) {
+            .sidebar {
+                width: 80px;
+                padding: 1.5rem 0.75rem;
+                align-items: center;
+            }
+
+            .logo-text,
+            .nav-desc,
+            .nav-label,
+            .sidebar-footer,
+            .nav-title {
+                display: none;
+            }
+
+            .nav-item {
+                padding: 1rem;
+                justify-content: center;
+            }
+
+            .footer-dashboard {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        .content {
+            overflow-y: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="bg-glow" style="top: -10%; left: -10%; background: var(--accent-primary);"></div>
+    <div class="bg-glow" style="bottom: -10%; right: -5%; background: var(--accent-tertiary);"></div>
+
+    <aside class="sidebar">
+        <a href="#" class="logo">
+            <div class="logo-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                        d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
+                </svg>
+            </div>
+            <span class="logo-text">Tıklabari</span>
+        </a>
+
+        <nav>
+            <p class="nav-label">Test Paneli</p>
+            <div class="nav-items">
+                <div class="nav-item active" data-target="clicktest" onclick="switchView('clicktest')">
+                    <span class="nav-icon">🖱️</span>
+                    <div class="nav-info">
+                        <span class="nav-title">Tık Testi</span>
+                        <span class="nav-desc">Tıklama hızı & sayacı</span>
+                    </div>
+                </div>
+                <div class="nav-item" data-target="mouseoptictest" onclick="switchView('mouseoptictest')">
+                    <span class="nav-icon">⊹</span>
+                    <div class="nav-info">
+                        <span class="nav-title">İmleç Lab</span>
+                        <span class="nav-desc">Hassasiyet & Drift</span>
+                    </div>
+                </div>
+                <div class="nav-item" data-target="scrolltest" onclick="switchView('scrolltest')">
+                    <span class="nav-icon">🔄</span>
+                    <div class="nav-info">
+                        <span class="nav-title">Tekerlek Testi</span>
+                        <span class="nav-desc">Scroll & Jitter</span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="status-pill">
+                <div class="status-dot"></div>
+                Sistem Aktif
+            </div>
+        </div>
+    </aside>
+
+    <main class="content">
+        <header class="top-bar">
+            <h2 class="view-title" id="view-title">Tıklama Testi Paneli</h2>
+            <div class="top-actions">
+                <!-- Gelecekteki eklemeler için -->
+            </div>
+        </header>
+
+        <section class="view-container">
+            <iframe id="iframe-clicktest" src="clicktest/index.html" class="active"></iframe>
+            <iframe id="iframe-mouseoptictest" src="mouseoptictest/index.html"></iframe>
+            <iframe id="iframe-scrolltest" src="scrolltest/index.html"></iframe>
+        </section>
+
+        <footer class="footer-dashboard">
+            <div class="footer-col">
+                <h4>Hızlı Bağlantılar</h4>
+                <div class="footer-links">
+                    <a href="https://tiklabari.com" class="footer-link" target="_blank"
+                        rel="noopener noreferrer">Anasayfa</a>
+                    <a href="https://tiklabari.com/pages/contact.html" class="footer-link" target="_blank"
+                        rel="noopener noreferrer">İletişim</a>
+                    <a href="https://tiklabari.com/pages/blog.html" class="footer-link">Blog</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Rehberler</h4>
+                <div class="footer-links">
+                    <a href="https://tiklabari.com/blog/iki-faktorlu-dogrulama/" class="footer-link">İki faktörlü
+                        doğrulama</a>
+                    <a href="https://tiklabari.com/pc-tools/" class="footer-link">Fare
+                        testleri</a>
+                    <a href="https://tiklabari.com/blog/" class="footer-link" target="_blank"
+                        rel="noopener noreferrer">Rehber</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Mouse Araçları</h4>
+                <div class="footer-links">
+                    <a href="/clicktest/" class="footer-link">Tık Testi</a>
+                    <a href="/mouseoptictest/" class="footer-link">İmleç Testi</a>
+                    <a href="/scrolltest/" class="footer-link">Tekerlek Testi</a>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        const titles = {
+            'clicktest': 'Tıklama Testi Paneli',
+            'mouseoptictest': 'İmleç Kararlılık Laboratuvarı',
+            'scrolltest': 'Tekerlek Sağlık Kontrolü'
+        };
+
+        function switchView(target) {
+            // Update nav items
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('data-target') === target) {
+                    item.classList.add('active');
+                }
+            });
+
+            // Update title
+            document.getElementById('view-title').textContent = titles[target];
+
+            // Update iframes
+            document.querySelectorAll('iframe').forEach(iframe => {
+                iframe.classList.remove('active');
+            });
+            document.getElementById(`iframe-${target}`).classList.add('active');
+
+            // Force focus to iframe content
+            document.getElementById(`iframe-${target}`).focus();
+        }
+
+        // Listen for messages if needed from iframes
+        window.addEventListener('message', (event) => {
+            // Future communication
+        });
+    </script>
+</body>
+
+</html>
